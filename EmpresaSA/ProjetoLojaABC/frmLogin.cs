@@ -1,4 +1,5 @@
-﻿using System;
+﻿// biblioteca do csharp
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,9 +25,18 @@ namespace ProjetoLojaABC
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            frmMenuPrincipal abrir = new frmMenuPrincipal();
-            abrir.Show();
-            this.Hide();
-        }
+            //frmMenuPrincipal abrir = new frmMenuPrincipal();
+            //abrir.Show();
+            //this.Hide();
+
+            //declaração de variáveis
+            string userName, userPass;
+
+            //inicializar as variáveis
+            userName = txtUsuario.Text;
+            userPass = txtSenha.Text;
+
+            MessageBox.Show(userName + " " + userPass);
+        }    
     }
 }
