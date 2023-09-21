@@ -48,7 +48,7 @@ namespace ProjetoLojaABC
             this.pctLogin.Size = new System.Drawing.Size(303, 261);
             this.pctLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pctLogin.TabIndex = 0;
-            this.pctLogin.TabStop = false;            
+            this.pctLogin.TabStop = false;
             // 
             // txtUsuario
             // 
@@ -57,7 +57,8 @@ namespace ProjetoLojaABC
             this.txtUsuario.MaxLength = 20;
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(186, 26);
-            this.txtUsuario.TabIndex = 0;            
+            this.txtUsuario.TabIndex = 0;
+            this.txtUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsuario_KeyDown);
             // 
             // lblUsuario
             // 
@@ -77,7 +78,7 @@ namespace ProjetoLojaABC
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(56, 20);
             this.lblSenha.TabIndex = 3;
-            this.lblSenha.Text = "Senha";        
+            this.lblSenha.Text = "Senha";
             // 
             // txtSenha
             // 
@@ -88,6 +89,7 @@ namespace ProjetoLojaABC
             this.txtSenha.PasswordChar = 'l';
             this.txtSenha.Size = new System.Drawing.Size(186, 25);
             this.txtSenha.TabIndex = 1;
+            this.txtSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSenha_KeyDown);
             // 
             // btnEntrar
             // 
@@ -128,7 +130,7 @@ namespace ProjetoLojaABC
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LojaABC - Login";           
+            this.Text = "LojaABC - Login";
             ((System.ComponentModel.ISupportInitialize)(this.pctLogin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

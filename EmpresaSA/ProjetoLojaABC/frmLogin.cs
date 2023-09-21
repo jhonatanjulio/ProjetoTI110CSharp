@@ -36,7 +36,37 @@ namespace ProjetoLojaABC
             userName = txtUsuario.Text;
             userPass = txtSenha.Text;
 
-            MessageBox.Show(userName + " " + userPass);
-        }    
+            if (userName.Equals("senac") && userPass.Equals("senac"))
+            {
+                frmMenuPrincipal abrir = new frmMenuPrincipal();
+                abrir.Show();
+                this.Hide();
+            } else
+            {
+                MessageBox.Show("Usuário ou senha inválidos!", 
+                                "Mensagem do Sistema", 
+                                MessageBoxButtons.OK, 
+                                MessageBoxIcon.Error, 
+                                MessageBoxDefaultButton.Button1);
+                txtSenha.Clear();
+                txtUsuario.Focus();
+            }
+        }
+
+        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                txtSenha.Focus();
+            }
+        }
+
+        private void txtSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnEntrar.Focus();
+            }
+        }
     }
 }
