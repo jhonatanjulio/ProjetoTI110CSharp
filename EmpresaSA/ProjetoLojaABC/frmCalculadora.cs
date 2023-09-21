@@ -27,45 +27,105 @@ namespace ProjetoLojaABC
                 MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button3);
 
-            Application.Exit();
+            if(resp == DialogResult.Yes) {
+                Application.Exit();
+            }
+
         }
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
             double num1, num2, result = 0;
-            num1 = Convert.ToDouble(txtVariavel1.Text);
-            num2 = Convert.ToDouble(txtVariavel2.Text);
+            string resp = "";
 
-            if (rdbAdicao.Checked)
+            try
             {
-                result = num1 + num2;
-            }
-            if (rdbSubtracao.Checked)
-            {
-                result = num1 - num2;
-            }
-            if (rdbMultiplicacao.Checked)
-            {
-                result = num1 * num2;
+                num1 = Convert.ToDouble(txtVariavel1.Text);
+                num2 = Convert.ToDouble(txtVariavel2.Text);
 
-            }
-            if (rdbDivisao.Checked)
-            {
-                if (num2 == 0)
+                if (!(rdbAdicao.Checked || rdbSubtracao.Checked || rdbMultiplicacao.Checked || rdbDivisao.Checked))
                 {
-                    MessageBox.Show("Impossível dividir por zero.",
-                            "Mensagem do Sistema",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error,
-                            MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("Selecione uma operação.",
+                        "Mensagem do Sistema",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 else
                 {
-                    result = num1 / num2;
+                    if (rdbAdicao.Checked)
+                    {
+                        result = num1 + num2;
+                        resp = Convert.ToString(result);
+                    }
+                    if (rdbSubtracao.Checked)
+                    {
+                        result = num1 - num2;
+                        resp = Convert.ToString(result);
+                    }
+                    if (rdbMultiplicacao.Checked)
+                    {
+                        result = num1 * num2;
+                        resp = Convert.ToString(result);
+
+                    }
+                    if (rdbDivisao.Checked)
+                    {
+                        if (num2 == 0)
+                        {
+                            resp = "Impossível dividir por zero.";
+                        }
+                        else
+                        {
+                            result = num1 / num2;
+                            resp = Convert.ToString(result);
+                        }
+                    }
+
+                    limparCamposCalcular();
+                    lblResultado.Text = resp;
                 }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Insira apenas números.",
+                        "Mensagem do Sistema",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                limparCampos();
+            }
+        }
 
-            lblResultado.Text = Convert.ToString(result);
+        public void limparCampos()
+        {
+            txtVariavel1.Text = "";
+            txtVariavel2.Clear();
+
+            lblResultado.Text = "";
+
+            rdbAdicao.Checked = false;
+            rdbSubtracao.Checked = false;
+            rdbMultiplicacao.Checked = false;
+            rdbDivisao.Checked = false;
+
+            txtVariavel1.Focus();
+        }
+
+        public void limparCamposCalcular()
+        {
+            txtVariavel1.Text = "";
+            txtVariavel2.Clear();
+
+            rdbAdicao.Checked = false;
+            rdbSubtracao.Checked = false;
+            rdbMultiplicacao.Checked = false;
+            rdbDivisao.Checked = false;
+
+            txtVariavel1.Focus();
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            limparCampos();
         }
     }
 }

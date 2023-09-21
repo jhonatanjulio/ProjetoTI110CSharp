@@ -227,6 +227,7 @@ namespace ProjetoLojaABC
             this.btnLimpar.TabIndex = 8;
             this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.UseVisualStyleBackColor = false;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnSair
             // 
