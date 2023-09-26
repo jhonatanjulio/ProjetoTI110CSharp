@@ -266,6 +266,7 @@ namespace ProjetoLojaABC
             this.Name = "frmCalculadora";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculadora Simples";
+            this.Load += new System.EventHandler(this.frmCalculadora_Load);
             this.gpbOperacao.ResumeLayout(false);
             this.gpbOperacao.PerformLayout();
             this.ResumeLayout(false);
