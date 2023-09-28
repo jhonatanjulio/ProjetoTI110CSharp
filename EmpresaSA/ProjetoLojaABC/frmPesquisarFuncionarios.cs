@@ -7,21 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
 
 namespace ProjetoLojaABC
 {
         public partial class frmPesquisarFuncionarios : Form
     {
-        //Criando variáveis para controle do menu
-        const int MF_BYCOMMAND = 0X400;
-        [DllImport("user32")]
-        static extern int RemoveMenu(IntPtr hMenu, int nPosition, int wFlags);
-        [DllImport("user32")]
-        static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
-        [DllImport("user32")]
-        static extern int GetMenuItemCount(IntPtr hWnd);
-
         public frmPesquisarFuncionarios()
         {
             InitializeComponent();
@@ -59,13 +49,6 @@ namespace ProjetoLojaABC
             ltbPesquisar.Items.Clear();
         }
 
-        private void frmPesquisarFuncionarios_Load(object sender, EventArgs e)
-        {
-            IntPtr hMenu = GetSystemMenu(this.Handle, false);
-            int MenuCount = GetMenuItemCount(hMenu) - 1;
-            RemoveMenu(hMenu, MenuCount, MF_BYCOMMAND);
-        }
-
         private void rdbNome_CheckedChanged(object sender, EventArgs e)
         {
             habilitarCampos();
@@ -85,6 +68,25 @@ namespace ProjetoLojaABC
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             ltbPesquisar.Items.Add(txtDesc.Text);
+        }
+
+        private void ltbPesquisar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ltbPesquisar.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um item válido!",
+                                "Mensagem do Sistema",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error,
+                                MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                string nome = ltbPesquisar.SelectedItem.ToString();
+                frmFuncionarios abrir = new frmFuncionarios(nome);
+                abrir.Show();
+                this.Hide();
+            }                        
         }
     }
 }

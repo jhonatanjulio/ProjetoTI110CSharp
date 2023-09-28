@@ -28,6 +28,13 @@ namespace ProjetoLojaABC
             desabilitarCampos();
         }
 
+        public frmFuncionarios(string nome)
+        {
+            InitializeComponent();
+            habilitarCamposAlterar();
+            txtNome.Text = nome;
+        }
+
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             frmMenuPrincipal abrir = new frmMenuPrincipal();
@@ -38,6 +45,7 @@ namespace ProjetoLojaABC
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             limparCampos();
+            desabilitarCamposNovo();
         }
 
         //criando o método limpar
@@ -133,6 +141,29 @@ namespace ProjetoLojaABC
 
             txtNome.Focus();
         }
+        public void habilitarCamposAlterar()
+        {
+            txtCod.Enabled = false;
+            txtNome.Enabled = true;
+            txtEmail.Enabled = true;
+            txtEndereco.Enabled = true;
+            txtNumero.Enabled = true;
+            txtBairro.Enabled = true;
+            txtCidade.Enabled = true;
+
+            mskCEP.Enabled = true;
+            mskCPF.Enabled = true;
+
+            cbbEstado.Enabled = true;
+            dtpNasc.Enabled = true;
+
+            btnCadastrar.Enabled = false;
+            btnAlterar.Enabled = true;
+            btnExcluir.Enabled = true;
+            btnLimpar.Enabled = true;
+            btnNovo.Enabled = false;
+
+        }
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
@@ -142,11 +173,12 @@ namespace ProjetoLojaABC
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             if (txtNome.Text.Equals("") || txtBairro.Text.Equals("") || txtCidade.Text.Equals("") ||
-                txtNumero.Text.Equals("") || txtEmail.Text.Equals("") || txtEndereco.Text.Equals("") || 
+                txtNumero.Text.Equals("") || txtEmail.Text.Equals("") || txtEndereco.Text.Equals("") ||
                 mskCPF.Text.Equals("   .   .   -") || mskCEP.Text.Equals("     -"))
             {
                 MessageBox.Show("É necessário preencher todos os campos!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } else
+            }
+            else
             {
                 MessageBox.Show("Cadastrado com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 desabilitarCamposNovo();
@@ -164,7 +196,48 @@ namespace ProjetoLojaABC
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             frmPesquisarFuncionarios abrir = new frmPesquisarFuncionarios();
-            abrir.ShowDialog();
+            abrir.Show();
+            this.Hide();
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Alterado com sucesso!", 
+                            "Mensagem do Sistema", 
+                            MessageBoxButtons.OK, 
+                            MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
+            limparCampos();
+            desabilitarCamposNovo();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            DialogResult resp = MessageBox.Show("Deseja realmente excluir?",
+                                                "Mensagem do Sistema",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Warning,
+                                                MessageBoxDefaultButton.Button2);
+            if (resp == DialogResult.Yes)
+            {
+                limparCampos();
+                desabilitarCamposNovo();
+                MessageBox.Show("Excluído com sucesso!",
+                            "Mensagem do Sistema",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        private void btnCarregaCEP_Click(object sender, EventArgs e)
+        {
+            WSCorreios.AtendeClienteClient ws = new WSCorreios.AtendeClienteClient();
+            WSCorreios.enderecoERP endereco = ws.consultaCEP(mskCEP.Text);
+            txtEndereco.Text = endereco.end;
+            txtBairro.Text = endereco.bairro;
+            txtCidade.Text = endereco.cidade;
+            cbbEstado.Text = endereco.uf;
         }
     }
 }
