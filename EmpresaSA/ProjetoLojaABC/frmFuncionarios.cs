@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using MySql.Data.MySqlClient;
 
 namespace ProjetoLojaABC
 {
@@ -170,6 +171,32 @@ namespace ProjetoLojaABC
             habilitarCamposNovo();
         }
 
+        public void cadastraFuncionarios()
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "insert into tbFuncionarios(nome,email,cpf,d_nasc,endereco,cep,numero,bairro,estado,cidade)values(@nome,@email,@cpf,@d_nasc,@endereco,@cep,@numero,@bairro,@estado,@cidade);";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtNome.Text;
+            comm.Parameters.Add("@email", MySqlDbType.VarChar, 100).Value = txtEmail.Text;
+            comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCPF.Text;
+            comm.Parameters.Add("@d_nasc", MySqlDbType.Date).Value = dtpNasc.Text;
+            comm.Parameters.Add("@endereco", MySqlDbType.VarChar, 100).Value = txtEndereco.Text;
+            comm.Parameters.Add("@cep", MySqlDbType.VarChar, 9).Value = mskCEP.Text;
+            comm.Parameters.Add("@numero", MySqlDbType.VarChar, 10).Value = txtNumero.Text;
+            comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 100).Value = txtBairro.Text;
+            comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado.Text;
+            comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 100).Value = txtCidade.Text;
+
+            comm.Connection = Conexao.obterConexao();
+
+            comm.ExecuteNonQuery();
+
+            Conexao.fecharConexao();
+        }
+
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             if (txtNome.Text.Equals("") || txtBairro.Text.Equals("") || txtCidade.Text.Equals("") ||
@@ -180,6 +207,7 @@ namespace ProjetoLojaABC
             }
             else
             {
+                cadastraFuncionarios();
                 MessageBox.Show("Cadastrado com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 desabilitarCamposNovo();
                 limparCampos();
@@ -230,14 +258,50 @@ namespace ProjetoLojaABC
             }
         }
 
-        private void btnCarregaCEP_Click(object sender, EventArgs e)
+        private void mskCEP_KeyDown(object sender, KeyEventArgs e)
         {
-            WSCorreios.AtendeClienteClient ws = new WSCorreios.AtendeClienteClient();
-            WSCorreios.enderecoERP endereco = ws.consultaCEP(mskCEP.Text);
-            txtEndereco.Text = endereco.end;
-            txtBairro.Text = endereco.bairro;
-            txtCidade.Text = endereco.cidade;
-            cbbEstado.Text = endereco.uf;
+            if (e.KeyCode == Keys.Enter)
+            {
+                WSCorreios.AtendeClienteClient ws = new WSCorreios.AtendeClienteClient();
+
+                try
+                {
+                    WSCorreios.enderecoERP endereco = ws.consultaCEP(mskCEP.Text);
+                    txtEndereco.Text = endereco.end;
+                    txtBairro.Text = endereco.bairro;
+                    txtCidade.Text = endereco.cidade;
+                    cbbEstado.Text = endereco.uf;
+
+                    txtNumero.Focus();
+                }
+                catch (Exception)
+                {
+                    if (mskCEP.Text.Equals("     -"))
+                    {
+                        txtNumero.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("CEP inválido!",
+                            "Mensagem do Sistema",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error,
+                            MessageBoxDefaultButton.Button1);
+                        mskCEP.Focus();
+                        mskCEP.Clear();
+                    }
+                }
+            }            
+        }
+
+        private void btnConectar_Click(object sender, EventArgs e)
+        {
+
+            Conexao.obterConexao();
+            MessageBox.Show("Banco de Dados conectado!");
+
+            Conexao.fecharConexao();
+            MessageBox.Show("Banco de Dados desconectado!");
         }
     }
 }

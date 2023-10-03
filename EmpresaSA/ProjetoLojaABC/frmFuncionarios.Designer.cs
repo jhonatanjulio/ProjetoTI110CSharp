@@ -61,7 +61,7 @@ namespace ProjetoLojaABC
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnNovo = new System.Windows.Forms.Button();
-            this.btnCarregaCEP = new System.Windows.Forms.Button();
+            this.btnConectar = new System.Windows.Forms.Button();
             this.gpbFuncionario.SuspendLayout();
             this.pnlCRUD.SuspendLayout();
             this.SuspendLayout();
@@ -163,6 +163,7 @@ namespace ProjetoLojaABC
             this.mskCEP.Name = "mskCEP";
             this.mskCEP.Size = new System.Drawing.Size(76, 24);
             this.mskCEP.TabIndex = 7;
+            this.mskCEP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mskCEP_KeyDown);
             // 
             // lblCEP
             // 
@@ -426,15 +427,15 @@ namespace ProjetoLojaABC
             this.btnNovo.UseVisualStyleBackColor = false;
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
-            // btnCarregaCEP
+            // btnConectar
             // 
-            this.btnCarregaCEP.Location = new System.Drawing.Point(391, 412);
-            this.btnCarregaCEP.Name = "btnCarregaCEP";
-            this.btnCarregaCEP.Size = new System.Drawing.Size(91, 30);
-            this.btnCarregaCEP.TabIndex = 2;
-            this.btnCarregaCEP.Text = "Carrega CEP";
-            this.btnCarregaCEP.UseVisualStyleBackColor = true;
-            this.btnCarregaCEP.Click += new System.EventHandler(this.btnCarregaCEP_Click);
+            this.btnConectar.Location = new System.Drawing.Point(339, 390);
+            this.btnConectar.Name = "btnConectar";
+            this.btnConectar.Size = new System.Drawing.Size(128, 61);
+            this.btnConectar.TabIndex = 2;
+            this.btnConectar.Text = "Conectar";
+            this.btnConectar.UseVisualStyleBackColor = true;
+            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
             // 
             // frmFuncionarios
             // 
@@ -442,7 +443,7 @@ namespace ProjetoLojaABC
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.btnCarregaCEP);
+            this.Controls.Add(this.btnConectar);
             this.Controls.Add(this.pnlCRUD);
             this.Controls.Add(this.gpbFuncionario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -492,6 +493,6 @@ namespace ProjetoLojaABC
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.Button btnCarregaCEP;
+        private System.Windows.Forms.Button btnConectar;
     }
 }
