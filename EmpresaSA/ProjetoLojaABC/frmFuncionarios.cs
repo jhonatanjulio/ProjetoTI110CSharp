@@ -33,7 +33,7 @@ namespace ProjetoLojaABC
         {
             InitializeComponent();
             habilitarCamposAlterar();
-            txtNome.Text = nome;
+            carregaFuncionario(nome);
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -168,10 +168,11 @@ namespace ProjetoLojaABC
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
+            carregaCodigo();
             habilitarCamposNovo();
         }
 
-        public void cadastraFuncionarios()
+        public int cadastraFuncionarios()
         {
             MySqlCommand comm = new MySqlCommand();
             comm.CommandText = "insert into tbFuncionarios(nome,email,cpf,d_nasc,endereco,cep,numero,bairro,estado,cidade)values(@nome,@email,@cpf,@d_nasc,@endereco,@cep,@numero,@bairro,@estado,@cidade);";
@@ -182,7 +183,7 @@ namespace ProjetoLojaABC
             comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtNome.Text;
             comm.Parameters.Add("@email", MySqlDbType.VarChar, 100).Value = txtEmail.Text;
             comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCPF.Text;
-            comm.Parameters.Add("@d_nasc", MySqlDbType.Date).Value = dtpNasc.Text;
+            comm.Parameters.Add("@d_nasc", MySqlDbType.Date).Value = Convert.ToDateTime(dtpNasc.Text);
             comm.Parameters.Add("@endereco", MySqlDbType.VarChar, 100).Value = txtEndereco.Text;
             comm.Parameters.Add("@cep", MySqlDbType.VarChar, 9).Value = mskCEP.Text;
             comm.Parameters.Add("@numero", MySqlDbType.VarChar, 10).Value = txtNumero.Text;
@@ -192,7 +193,55 @@ namespace ProjetoLojaABC
 
             comm.Connection = Conexao.obterConexao();
 
-            comm.ExecuteNonQuery();
+            int res = comm.ExecuteNonQuery();
+
+            Conexao.fecharConexao();
+
+            return res;
+        }
+
+        public void carregaCodigo()
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select cod_func+1 from tbFuncionarios order by cod_func desc;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Connection = Conexao.obterConexao();
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            txtCod.Text = Convert.ToString(DR.GetInt32(0));
+
+            Conexao.fecharConexao();
+        }
+
+        //carregar funcionario
+        public void carregaFuncionario(string nome)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select * from tbFuncionarios where nome = @nomeFunc;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@nomeFunc", MySqlDbType.VarChar, 100).Value = nome;
+
+            comm.Connection = Conexao.obterConexao();
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            txtCod.Text = Convert.ToString(DR.GetInt32(0));
+            txtNome.Text = DR.GetString(1);
+            txtEmail.Text = DR.GetString(2);
+            mskCPF.Text = DR.GetString(3);
+            dtpNasc.Text = Convert.ToString(DR.GetDateTime(4));
+            txtEndereco.Text = DR.GetString(5);
+            mskCEP.Text = DR.GetString(6);
+            txtNumero.Text = DR.GetString(7);
+            txtBairro.Text = DR.GetString(8);
+            cbbEstado.Text = DR.GetString(9);
+            txtCidade.Text = DR.GetString(10);
 
             Conexao.fecharConexao();
         }
@@ -207,10 +256,16 @@ namespace ProjetoLojaABC
             }
             else
             {
-                cadastraFuncionarios();
-                MessageBox.Show("Cadastrado com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                desabilitarCamposNovo();
-                limparCampos();
+                if (cadastraFuncionarios() == 1)
+                {
+                    MessageBox.Show("Cadastrado com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    desabilitarCamposNovo();
+                    limparCampos();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao cadastrar.", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
