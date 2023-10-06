@@ -264,7 +264,7 @@ namespace ProjetoLojaABC
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao cadastrar.", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao cadastrar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -285,13 +285,75 @@ namespace ProjetoLojaABC
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Alterado com sucesso!", 
-                            "Mensagem do Sistema", 
-                            MessageBoxButtons.OK, 
-                            MessageBoxIcon.Information,
-                            MessageBoxDefaultButton.Button1);
-            limparCampos();
-            desabilitarCamposNovo();
+            DialogResult resp = MessageBox.Show("Deseja realmente alterar?",
+                                                "Mensagem do Sistema",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Warning,
+                                                MessageBoxDefaultButton.Button2);
+            if (resp == DialogResult.Yes)
+            {
+                if (alteraFuncionarios(Convert.ToInt32(txtCod.Text)) == 1)
+                {
+                    MessageBox.Show("Alterado com sucesso!",
+                                "Mensagem do Sistema",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1);
+                    limparCampos();
+                    desabilitarCamposNovo();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao alterar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }                        
+        }
+
+        //alterar funcionários
+        public int alteraFuncionarios(int cod)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "update tbFuncionarios set nome = @nome, email = @email, cpf = @cpf, d_nasc = @d_nasc, endereco = @endereco, cep = @cep, numero = @numero, bairro = @bairro, estado = @estado, cidade = @cidade where cod_func = @codFunc;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtNome.Text;
+            comm.Parameters.Add("@email", MySqlDbType.VarChar, 100).Value = txtEmail.Text;
+            comm.Parameters.Add("@cpf", MySqlDbType.VarChar, 14).Value = mskCPF.Text;
+            comm.Parameters.Add("@d_nasc", MySqlDbType.Date).Value = Convert.ToDateTime(dtpNasc.Text);
+            comm.Parameters.Add("@endereco", MySqlDbType.VarChar, 100).Value = txtEndereco.Text;
+            comm.Parameters.Add("@cep", MySqlDbType.VarChar, 9).Value = mskCEP.Text;
+            comm.Parameters.Add("@numero", MySqlDbType.VarChar, 10).Value = txtNumero.Text;
+            comm.Parameters.Add("@bairro", MySqlDbType.VarChar, 100).Value = txtBairro.Text;
+            comm.Parameters.Add("@estado", MySqlDbType.VarChar, 2).Value = cbbEstado.Text;
+            comm.Parameters.Add("@cidade", MySqlDbType.VarChar, 100).Value = txtCidade.Text;
+            comm.Parameters.Add("@codFunc", MySqlDbType.Int32).Value = cod;
+
+            comm.Connection = Conexao.obterConexao();
+
+            int res = comm.ExecuteNonQuery();
+
+            Conexao.fecharConexao();
+
+            return res;
+        }
+
+        //excluir funcionarios
+        public int excluiFuncionarios(int cod)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "delete from tbFuncionarios where cod_func = @codFunc;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Add("@codFunc", MySqlDbType.Int32).Value = cod;
+
+            comm.Connection = Conexao.obterConexao();
+            int res = comm.ExecuteNonQuery();
+
+
+            Conexao.fecharConexao();
+
+            return res;
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -303,13 +365,21 @@ namespace ProjetoLojaABC
                                                 MessageBoxDefaultButton.Button2);
             if (resp == DialogResult.Yes)
             {
-                limparCampos();
-                desabilitarCamposNovo();
-                MessageBox.Show("Excluído com sucesso!",
-                            "Mensagem do Sistema",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information,
-                            MessageBoxDefaultButton.Button1);
+                if (excluiFuncionarios(Convert.ToInt32(txtCod.Text)) == 1)
+                {
+                    limparCampos();
+                    desabilitarCamposNovo();
+                    MessageBox.Show("Excluído com sucesso!",
+                                "Mensagem do Sistema",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1);
+                } 
+                else
+                {
+                    MessageBox.Show("Erro ao excluir!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
             }
         }
 
