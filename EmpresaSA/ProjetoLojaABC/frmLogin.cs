@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using MySql.Data.MySqlClient;
 
 namespace ProjetoLojaABC
 {
@@ -33,6 +34,27 @@ namespace ProjetoLojaABC
             Application.Exit();
         }
 
+        //Acesso validação de usuários
+        public bool autenticaUsuario(string usuario, string senha)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select * from tbUsuarios where usuario = @usuario and senha = @senha;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@usuario", MySqlDbType.VarChar, 30).Value = usuario;
+            comm.Parameters.Add("@senha", MySqlDbType.VarChar, 10).Value = senha;
+
+            comm.Connection = Conexao.obterConexao();
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            bool validar = DR.HasRows;
+
+            Conexao.fecharConexao();
+
+            return validar;
+        }
+
         private void btnEntrar_Click(object sender, EventArgs e)
         {
             //frmMenuPrincipal abrir = new frmMenuPrincipal();
@@ -46,7 +68,7 @@ namespace ProjetoLojaABC
             userName = txtUsuario.Text;
             userPass = txtSenha.Text;
 
-            if (userName.Equals("senac") && userPass.Equals("senac"))
+            if (autenticaUsuario(userName, userPass))
             {
                 frmMenuPrincipal abrir = new frmMenuPrincipal();
                 abrir.Show();
