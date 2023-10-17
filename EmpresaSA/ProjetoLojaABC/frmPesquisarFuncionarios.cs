@@ -127,7 +127,6 @@ namespace ProjetoLojaABC
             }
                       
             Conexao.fecharConexao();
-
         }
 
         private void ltbPesquisar_SelectedIndexChanged(object sender, EventArgs e)

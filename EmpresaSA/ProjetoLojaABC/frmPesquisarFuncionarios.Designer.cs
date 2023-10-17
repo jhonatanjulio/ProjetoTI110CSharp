@@ -30,7 +30,7 @@ namespace ProjetoLojaABC
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPesquisarFuncionarios));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gpbPesquisarFunc = new System.Windows.Forms.GroupBox();
             this.txtDesc = new System.Windows.Forms.TextBox();
             this.lblDesc = new System.Windows.Forms.Label();
             this.rdbCod = new System.Windows.Forms.RadioButton();
@@ -38,23 +38,23 @@ namespace ProjetoLojaABC
             this.ltbPesquisar = new System.Windows.Forms.ListBox();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.gpbPesquisarFunc.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gpbPesquisarFunc
             // 
-            this.groupBox1.Controls.Add(this.txtDesc);
-            this.groupBox1.Controls.Add(this.lblDesc);
-            this.groupBox1.Controls.Add(this.rdbCod);
-            this.groupBox1.Controls.Add(this.rdbNome);
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(535, 129);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Pesquisar por";
+            this.gpbPesquisarFunc.Controls.Add(this.txtDesc);
+            this.gpbPesquisarFunc.Controls.Add(this.lblDesc);
+            this.gpbPesquisarFunc.Controls.Add(this.rdbCod);
+            this.gpbPesquisarFunc.Controls.Add(this.rdbNome);
+            this.gpbPesquisarFunc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gpbPesquisarFunc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbPesquisarFunc.Location = new System.Drawing.Point(12, 12);
+            this.gpbPesquisarFunc.Name = "gpbPesquisarFunc";
+            this.gpbPesquisarFunc.Size = new System.Drawing.Size(535, 129);
+            this.gpbPesquisarFunc.TabIndex = 0;
+            this.gpbPesquisarFunc.TabStop = false;
+            this.gpbPesquisarFunc.Text = "Pesquisar por";
             // 
             // txtDesc
             // 
@@ -146,22 +146,22 @@ namespace ProjetoLojaABC
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.ltbPesquisar);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gpbPesquisarFunc);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmPesquisarFuncionarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmPesquisarFuncionarios";        
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Text = "LojaABC - Pesquisar Funcionários";
+            this.gpbPesquisarFunc.ResumeLayout(false);
+            this.gpbPesquisarFunc.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gpbPesquisarFunc;
         private System.Windows.Forms.TextBox txtDesc;
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.RadioButton rdbCod;
