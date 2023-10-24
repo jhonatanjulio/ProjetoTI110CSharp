@@ -70,28 +70,31 @@ namespace projetoAlugaMesa
             this.lstPesquisar.Name = "lstPesquisar";
             this.lstPesquisar.Size = new System.Drawing.Size(270, 184);
             this.lstPesquisar.TabIndex = 18;
+            this.lstPesquisar.SelectedIndexChanged += new System.EventHandler(this.lstPesquisar_SelectedIndexChanged);
             // 
             // rdbIndisponiveis
             // 
             this.rdbIndisponiveis.AutoSize = true;
-            this.rdbIndisponiveis.Location = new System.Drawing.Point(209, 40);
+            this.rdbIndisponiveis.Location = new System.Drawing.Point(233, 41);
             this.rdbIndisponiveis.Name = "rdbIndisponiveis";
-            this.rdbIndisponiveis.Size = new System.Drawing.Size(118, 24);
+            this.rdbIndisponiveis.Size = new System.Drawing.Size(94, 24);
             this.rdbIndisponiveis.TabIndex = 1;
             this.rdbIndisponiveis.TabStop = true;
-            this.rdbIndisponiveis.Text = "Indisponíveis";
+            this.rdbIndisponiveis.Text = "Alugadas";
             this.rdbIndisponiveis.UseVisualStyleBackColor = true;
+            this.rdbIndisponiveis.CheckedChanged += new System.EventHandler(this.rdbIndisponiveis_CheckedChanged);
             // 
             // rdbDisponiveis
             // 
             this.rdbDisponiveis.AutoSize = true;
-            this.rdbDisponiveis.Location = new System.Drawing.Point(57, 40);
+            this.rdbDisponiveis.Location = new System.Drawing.Point(64, 41);
             this.rdbDisponiveis.Name = "rdbDisponiveis";
             this.rdbDisponiveis.Size = new System.Drawing.Size(107, 24);
             this.rdbDisponiveis.TabIndex = 0;
             this.rdbDisponiveis.TabStop = true;
             this.rdbDisponiveis.Text = "Disponíveis";
             this.rdbDisponiveis.UseVisualStyleBackColor = true;
+            this.rdbDisponiveis.CheckedChanged += new System.EventHandler(this.rdbDisponiveis_CheckedChanged);
             // 
             // btnPesquisar
             // 

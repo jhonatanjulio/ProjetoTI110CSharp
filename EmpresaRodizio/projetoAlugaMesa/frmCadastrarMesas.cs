@@ -32,8 +32,7 @@ namespace projetoAlugaMesa
             txtIdMesa.Enabled = false;
             txtQtdeCadeiras.Enabled = false;
 
-            rdbDisponivel.Enabled = false;
-            rdbIndisponivel.Enabled = false;
+            txtStatus.Enabled = false;
 
             // habilitando botões padrões
             btnNovo.Enabled = true;
@@ -50,11 +49,9 @@ namespace projetoAlugaMesa
             btnCadastrar.Enabled = true;
             btnLimpar.Enabled = true;
 
-            // habilitando campos e radio button
+            // habilitando campos e botando status padrao
             txtQtdeCadeiras.Enabled = true;
-
-            rdbDisponivel.Enabled = true;
-            rdbIndisponivel.Enabled = true;
+            txtStatus.Text = "DISPONIVEL";
 
             // desabilitando o botão de pesquisar
             btnPesquisar.Enabled = false;
@@ -73,12 +70,10 @@ namespace projetoAlugaMesa
             btnExcluir.Enabled = true;
             btnLimpar.Enabled = true;
 
-            // habilitando campos e radio button
+            // habilitando campos
             txtQtdeCadeiras.Enabled = true;
 
-            rdbDisponivel.Enabled = true;
-            rdbIndisponivel.Enabled = true;
-            rdbDisponivel.Checked = true;
+            txtStatus.Text = "DISPONIVEL";
 
             // desabilitando o botão novo
             btnNovo.Enabled = false;
@@ -94,12 +89,10 @@ namespace projetoAlugaMesa
             btnExcluir.Enabled = true;
             btnLimpar.Enabled = true;
 
-            // habilitando campos e radio button
+            // habilitando campos
             txtQtdeCadeiras.Enabled = false;
 
-            rdbDisponivel.Enabled = false;
-            rdbIndisponivel.Enabled = false;
-            rdbIndisponivel.Checked = true;
+            txtStatus.Text = "INDISPONIVEL";
 
             // desabilitando o botão novo
             btnNovo.Enabled = false;
@@ -113,8 +106,7 @@ namespace projetoAlugaMesa
             txtIdMesa.Clear();
             txtQtdeCadeiras.Clear();
 
-            rdbDisponivel.Checked = false;
-            rdbIndisponivel.Checked = false;
+            txtStatus.Clear();
 
             rdbDisponiveis.Checked = false;
             rdbIndisponiveis.Checked = false;
@@ -130,20 +122,7 @@ namespace projetoAlugaMesa
             MySqlCommand con = new MySqlCommand();
             con.CommandText = "insert into tbMesa(qtdCad, status) values (@qtdCad, @status);";
             con.CommandType = CommandType.Text;
-            string status;
-
-            if(rdbDisponivel.Checked == true)
-            {
-                status = "DISPONIVEL";
-            }
-            else if(rdbIndisponivel.Checked == true)
-            {
-                status = "INDISPONIVEL";
-            }
-            else
-            {
-                status = "DISPONIVEL";
-            }
+            string status = "DISPONIVEL";
 
             con.Parameters.Clear();
             con.Parameters.Add("@qtdCad", MySqlDbType.Int32).Value = qtdCad;
@@ -163,12 +142,12 @@ namespace projetoAlugaMesa
             MySqlCommand con = new MySqlCommand();
             con.CommandText = "select idMesa, qtdCad from tbMesa where status = 'DISPONIVEL';";
             con.CommandType = CommandType.Text;
-            
+
 
             con.Connection = Connection.getConnection();
             MySqlDataReader DR;
             DR = con.ExecuteReader();
-            while(DR.Read())
+            while (DR.Read())
             {
                 lstPesquisar.Items.Add("Mesa: " + DR.GetValue(0).ToString() + " | " + DR.GetValue(1).ToString() + " cadeiras");
             }
@@ -176,7 +155,7 @@ namespace projetoAlugaMesa
             Connection.closeConnection();
         }
 
-        //função sql pesquisa mesas indisponíveis
+        //função sql pesquisa mesas indisponíveis e que retorna o código da mesa
         public void researchUnavailableTables()
         {
             MySqlCommand con = new MySqlCommand();
@@ -195,6 +174,93 @@ namespace projetoAlugaMesa
             Connection.closeConnection();
         }
 
+        //função sql para pesquisar todos os dados do registro e imprimir na textbox
+        public void researchTablesPrintData(int idMesa)
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "select * from tbMesa where idMesa = @idMesa;";
+            con.CommandType = CommandType.Text;
+
+            con.Parameters.Clear();
+            con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+
+            con.Connection = Connection.getConnection();
+            MySqlDataReader DR;
+            DR = con.ExecuteReader();
+            DR.Read();
+
+            txtIdMesa.Text = DR.GetValue(0).ToString();
+            txtQtdeCadeiras.Text = DR.GetValue(1).ToString();
+
+            if (DR.GetValue(2).ToString().Equals("DISPONIVEL"))
+            {
+                txtStatus.Text = "DISPONIVEL";
+                enableFieldsResearchAvailable();
+            }
+            else
+            {
+                enableFieldsResearchUnavailable();
+                txtStatus.Text = "INDISPONIVEL";
+            }
+
+            Connection.closeConnection();
+        }
+
+        //função sql para retornar o próximo código disponível no auto_increment da tabela
+        public void nextTableId()
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "select idMesa+1 from tbMesa order by idMesa desc;";
+            con.CommandType = CommandType.Text;
+
+            con.Connection = Connection.getConnection();
+
+            MySqlDataReader DR;
+            DR = con.ExecuteReader();
+            DR.Read();
+
+            txtIdMesa.Text = DR.GetValue(0).ToString();
+
+            Connection.closeConnection();
+        }
+
+        //função sql alterar mesa
+        public int changeTable(int idMesa)
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "update tbMesa set qtdCad = @qtdCad where idMesa = @idMesa;";
+            con.CommandType = CommandType.Text;
+
+            con.Parameters.Clear();
+            con.Parameters.Add("@qtdCad", MySqlDbType.Int32).Value = Convert.ToInt32(txtQtdeCadeiras.Text);
+            con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+
+            con.Connection = Connection.getConnection();
+            int resp = con.ExecuteNonQuery();
+
+            Connection.closeConnection();
+
+            return resp;
+        }
+
+        //função sql deletar mesa
+        public int deleteTable(int idMesa)
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "delete from tbMesa where idMesa = @idMesa;";
+            con.CommandType = CommandType.Text;
+
+            con.Parameters.Clear();
+            con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+
+            con.Connection = Connection.getConnection();
+            int resp = con.ExecuteNonQuery();
+
+            Connection.closeConnection();
+
+            return resp;
+        }
+
         //click botão voltar
         private void btnVoltar_Click(object sender, EventArgs e)
         {
@@ -206,8 +272,9 @@ namespace projetoAlugaMesa
         //click botão novo
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            enableFieldsNew();
             clearFields();
+            enableFieldsNew();
+            nextTableId();
         }
 
         //click botão limpar
@@ -220,17 +287,24 @@ namespace projetoAlugaMesa
         //click botão cadastrar
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            if (registerTables(Convert.ToInt32(txtQtdeCadeiras.Text)) == 1)
+            try
             {
-                clearFields();
-                disableFields();
-                MessageBox.Show("Mesa cadastrada com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                if (registerTables(Convert.ToInt32(txtQtdeCadeiras.Text)) == 1)
+                {
+                    clearFields();
+                    disableFields();
+                    MessageBox.Show("Mesa cadastrada com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao cadastrar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao cadastrar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+
+                MessageBox.Show("Insira a quantidade de cadeiras!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
-            
         }
 
         //click botão pesquisar
@@ -240,37 +314,103 @@ namespace projetoAlugaMesa
             if (rdbDisponiveis.Checked == true)
             {
                 clearFields();
+                rdbDisponiveis.Checked = true;
                 disableFields();
-                enableFieldsResearchAvailable();
                 researchAvailableTables();
             }
             else if (rdbIndisponiveis.Checked == true)
             {
                 clearFields();
+                rdbIndisponiveis.Checked = true;
                 disableFields();
-                enableFieldsResearchUnavailable();
                 researchUnavailableTables();
             }
             else
             {
                 MessageBox.Show("Escolha pelo menos uma opção!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
-            
-            
         }
 
         //click botão alterar
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            clearFields();
-            disableFields();
+            if (txtStatus.Text.Equals("INDISPONIVEL"))
+            {
+                MessageBox.Show("Não é possível alterar uma mesa indisponível!\nLibere-a antes na janela de aluguel!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                DialogResult resp = MessageBox.Show("Você realmente deseja alterar esta mesa? (Não é possível voltar atrás com esta operação).", "Mensagem do Sistema", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
+                if (resp == DialogResult.Yes)
+                {
+                    if (changeTable(Convert.ToInt32(txtIdMesa.Text)) == 1)
+                    {
+                        MessageBox.Show("Mesa alterada com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        clearFields();
+                        disableFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao alterar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                }
+            }
         }
 
         //click botão excluir
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            clearFields();
-            disableFields();
+            if (txtStatus.Text.Equals("INDISPONIVEL"))
+            {
+                MessageBox.Show("Não é possível excluir uma mesa indisponível!\nLibere-a antes na janela de aluguel!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                DialogResult resp = MessageBox.Show("Você realmente deseja excluir esta mesa? (Não é possível voltar atrás com esta operação).", "Mensagem do Sistema", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
+                if (resp == DialogResult.Yes)
+                {
+                    if (deleteTable(Convert.ToInt32(txtIdMesa.Text)) == 1)
+                    {
+                        MessageBox.Show("Mesa exclúida com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        clearFields();
+                        disableFields();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao excluir!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                }
+            }
+        }
+
+        // ação de click na listbox (seja em item ou fora)
+        private void lstPesquisar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstPesquisar.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione um item válido!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                //extraindo apenas o código da mesa a partir da listbox com split
+                char[] between = { ' ' };
+                string[] cod = lstPesquisar.SelectedItem.ToString().Split(between, StringSplitOptions.None);
+                int table = Convert.ToInt32(cod[1]);
+
+                researchTablesPrintData(table);
+            }
+        }
+
+        //ação click no radio button disponíveis (para caso troque a opção, a lista seja limpa para uma nova pesquisa)
+        private void rdbDisponiveis_CheckedChanged(object sender, EventArgs e)
+        {
+            lstPesquisar.Items.Clear();
+        }
+
+        //ação click no radio button indisponíveis (para caso troque a opção, a lista seja limpa para uma nova pesquisa)
+        private void rdbIndisponiveis_CheckedChanged(object sender, EventArgs e)
+        {
+            lstPesquisar.Items.Clear();
         }
     }
 }

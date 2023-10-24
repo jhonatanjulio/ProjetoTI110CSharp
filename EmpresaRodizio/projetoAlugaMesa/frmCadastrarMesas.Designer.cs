@@ -40,15 +40,13 @@ namespace projetoAlugaMesa
             this.lblIdMesa = new System.Windows.Forms.Label();
             this.lblQtdeCadeiras = new System.Windows.Forms.Label();
             this.txtQtdeCadeiras = new System.Windows.Forms.TextBox();
-            this.gpbStatus = new System.Windows.Forms.GroupBox();
-            this.rdbIndisponivel = new System.Windows.Forms.RadioButton();
-            this.rdbDisponivel = new System.Windows.Forms.RadioButton();
             this.gpbPesquisar = new System.Windows.Forms.GroupBox();
             this.lstPesquisar = new System.Windows.Forms.ListBox();
             this.rdbIndisponiveis = new System.Windows.Forms.RadioButton();
             this.rdbDisponiveis = new System.Windows.Forms.RadioButton();
             this.btnPesquisar = new System.Windows.Forms.Button();
-            this.gpbStatus.SuspendLayout();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.txtStatus = new System.Windows.Forms.TextBox();
             this.gpbPesquisar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -186,40 +184,6 @@ namespace projetoAlugaMesa
             this.txtQtdeCadeiras.Size = new System.Drawing.Size(83, 28);
             this.txtQtdeCadeiras.TabIndex = 10;
             // 
-            // gpbStatus
-            // 
-            this.gpbStatus.Controls.Add(this.rdbIndisponivel);
-            this.gpbStatus.Controls.Add(this.rdbDisponivel);
-            this.gpbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbStatus.Location = new System.Drawing.Point(56, 164);
-            this.gpbStatus.Name = "gpbStatus";
-            this.gpbStatus.Size = new System.Drawing.Size(266, 93);
-            this.gpbStatus.TabIndex = 12;
-            this.gpbStatus.TabStop = false;
-            this.gpbStatus.Text = "Status da Mesa:";
-            // 
-            // rdbIndisponivel
-            // 
-            this.rdbIndisponivel.AutoSize = true;
-            this.rdbIndisponivel.Location = new System.Drawing.Point(29, 55);
-            this.rdbIndisponivel.Name = "rdbIndisponivel";
-            this.rdbIndisponivel.Size = new System.Drawing.Size(110, 24);
-            this.rdbIndisponivel.TabIndex = 1;
-            this.rdbIndisponivel.TabStop = true;
-            this.rdbIndisponivel.Text = "Indisponível";
-            this.rdbIndisponivel.UseVisualStyleBackColor = true;
-            // 
-            // rdbDisponivel
-            // 
-            this.rdbDisponivel.AutoSize = true;
-            this.rdbDisponivel.Location = new System.Drawing.Point(29, 25);
-            this.rdbDisponivel.Name = "rdbDisponivel";
-            this.rdbDisponivel.Size = new System.Drawing.Size(99, 24);
-            this.rdbDisponivel.TabIndex = 0;
-            this.rdbDisponivel.TabStop = true;
-            this.rdbDisponivel.Text = "Disponível";
-            this.rdbDisponivel.UseVisualStyleBackColor = true;
-            // 
             // gpbPesquisar
             // 
             this.gpbPesquisar.Controls.Add(this.lstPesquisar);
@@ -242,6 +206,7 @@ namespace projetoAlugaMesa
             this.lstPesquisar.Name = "lstPesquisar";
             this.lstPesquisar.Size = new System.Drawing.Size(270, 184);
             this.lstPesquisar.TabIndex = 18;
+            this.lstPesquisar.SelectedIndexChanged += new System.EventHandler(this.lstPesquisar_SelectedIndexChanged);
             // 
             // rdbIndisponiveis
             // 
@@ -253,6 +218,7 @@ namespace projetoAlugaMesa
             this.rdbIndisponiveis.TabStop = true;
             this.rdbIndisponiveis.Text = "Indisponíveis";
             this.rdbIndisponiveis.UseVisualStyleBackColor = true;
+            this.rdbIndisponiveis.CheckedChanged += new System.EventHandler(this.rdbIndisponiveis_CheckedChanged);
             // 
             // rdbDisponiveis
             // 
@@ -264,6 +230,7 @@ namespace projetoAlugaMesa
             this.rdbDisponiveis.TabStop = true;
             this.rdbDisponiveis.Text = "Disponíveis";
             this.rdbDisponiveis.UseVisualStyleBackColor = true;
+            this.rdbDisponiveis.CheckedChanged += new System.EventHandler(this.rdbDisponiveis_CheckedChanged);
             // 
             // btnPesquisar
             // 
@@ -281,13 +248,34 @@ namespace projetoAlugaMesa
             this.btnPesquisar.UseVisualStyleBackColor = false;
             this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(52, 171);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(121, 20);
+            this.lblStatus.TabIndex = 27;
+            this.lblStatus.Text = "Status da Mesa";
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.Location = new System.Drawing.Point(179, 168);
+            this.txtStatus.Multiline = true;
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(127, 28);
+            this.txtStatus.TabIndex = 26;
+            this.txtStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // frmCadastrarMesas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.gpbPesquisar);
-            this.Controls.Add(this.gpbStatus);
             this.Controls.Add(this.lblQtdeCadeiras);
             this.Controls.Add(this.txtQtdeCadeiras);
             this.Controls.Add(this.lblIdMesa);
@@ -304,8 +292,6 @@ namespace projetoAlugaMesa
             this.Name = "frmCadastrarMesas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rodízio - Cadastrar Mesas";
-            this.gpbStatus.ResumeLayout(false);
-            this.gpbStatus.PerformLayout();
             this.gpbPesquisar.ResumeLayout(false);
             this.gpbPesquisar.PerformLayout();
             this.ResumeLayout(false);
@@ -325,13 +311,12 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.Label lblIdMesa;
         private System.Windows.Forms.Label lblQtdeCadeiras;
         private System.Windows.Forms.TextBox txtQtdeCadeiras;
-        private System.Windows.Forms.GroupBox gpbStatus;
-        private System.Windows.Forms.RadioButton rdbIndisponivel;
-        private System.Windows.Forms.RadioButton rdbDisponivel;
         private System.Windows.Forms.GroupBox gpbPesquisar;
         private System.Windows.Forms.ListBox lstPesquisar;
         private System.Windows.Forms.RadioButton rdbIndisponiveis;
         private System.Windows.Forms.RadioButton rdbDisponiveis;
         private System.Windows.Forms.Button btnPesquisar;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.TextBox txtStatus;
     }
 }
