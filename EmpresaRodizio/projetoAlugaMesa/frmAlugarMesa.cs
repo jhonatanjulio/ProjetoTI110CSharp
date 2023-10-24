@@ -75,7 +75,7 @@ namespace projetoAlugaMesa
             rdbDisponiveis.Enabled = true;
             rdbIndisponiveis.Enabled = true;
 
-            btnAlugar.Focus();
+            txtCliente.Focus();
         }
 
         // habilitar campos botão pesquisar quando mesa estiver indisponivel
@@ -86,8 +86,8 @@ namespace projetoAlugaMesa
             btnLimpar.Enabled = true;
 
             // habilitando campos
-            txtCliente.Enabled = true;
-            txtIdMesa.Enabled = true;
+            txtCliente.Enabled = false;
+            txtIdMesa.Enabled = false;
             txtStatus.Enabled = false;
 
             rdbDisponiveis.Enabled = true;
@@ -134,11 +134,11 @@ namespace projetoAlugaMesa
             Connection.closeConnection();
         }
 
-        //função sql pesquisar mesas alugadas (para fazer)
+        //função sql pesquisar mesas alugadas
         public void researchRentedTables()
         {
             MySqlCommand con = new MySqlCommand();
-            con.CommandText = "select cliente, idMesa, status from tbAluguel;";
+            con.CommandText = "select cliente, idMesa, status from tbAluguel where status = 'EM ANDAMENTO';";
             con.CommandType = CommandType.Text;
 
 
@@ -154,7 +154,132 @@ namespace projetoAlugaMesa
         }
 
         //função sql alugar mesas
+        public int registerRentedTable(int idMesa)
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "insert into tbAluguel(cliente, idMesa) values (@cliente, @idMesa);";
+            con.CommandType = CommandType.Text;
 
+            con.Parameters.Clear();
+            con.Parameters.Add("@cliente", MySqlDbType.VarChar, 20).Value = txtCliente.Text;
+            con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+
+            con.Connection = Connection.getConnection();
+    
+            int resp = con.ExecuteNonQuery();
+
+            Connection.closeConnection();
+
+            if(changeStatusTable(idMesa) != 1)
+            {
+                MessageBox.Show("Erro ao atualizar o status da mesa!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            return resp;
+        }
+
+        //função sql alterar o status da mesa alugada
+        public int changeStatusTable(int idMesa)
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "update tbMesa set status = @status where idMesa = @idMesa;";
+            con.CommandType = CommandType.Text;
+
+            con.Parameters.Clear();
+            con.Parameters.Add("@status", MySqlDbType.VarChar, 20).Value = "INDISPONIVEL";
+            con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+
+            con.Connection = Connection.getConnection();
+
+            int resp = con.ExecuteNonQuery();
+
+            Connection.closeConnection();
+            return resp;
+        }
+
+        //função sql para pesquisar todos os dados do registro e imprimir na textbox
+        public void researchAvailableTablesPrintData(int idMesa)
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "select idMesa, status from tbMesa where idMesa = @idMesa;";
+            con.CommandType = CommandType.Text;
+
+            con.Parameters.Clear();
+            con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+
+            con.Connection = Connection.getConnection();
+            MySqlDataReader DR;
+            DR = con.ExecuteReader();
+            DR.Read();
+
+            txtIdMesa.Text = DR.GetValue(0).ToString();
+            txtStatus.Text = DR.GetValue(1).ToString();
+            txtStatus.Text = "DISPONIVEL";
+            enableFieldsResearchAvailabe();
+
+            Connection.closeConnection();
+        }
+
+        //função sql para pesquisar todos os dados do registro e imprimir na textbox
+        public void researchUnavailableTablesPrintData(int idMesa)
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "select alu.cliente, alu.idMesa, mesa.status from tbAluguel as alu inner join tbMesa as mesa on alu.idMesa = mesa.idMesa where alu.idMesa = @idMesa;";
+            con.CommandType = CommandType.Text;
+
+            con.Parameters.Clear();
+            con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+
+            con.Connection = Connection.getConnection();
+            MySqlDataReader DR;
+            DR = con.ExecuteReader();
+            DR.Read();
+
+            txtCliente.Text = DR.GetValue(0).ToString();
+            txtIdMesa.Text = DR.GetValue(1).ToString();
+            txtStatus.Text = DR.GetValue(2).ToString();
+            enableFieldsResearchUnavailabe();
+
+            Connection.closeConnection();
+        }
+
+        //função sql liberar alugueis
+        public int toFreeRentedTables(int idMesa)
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "update tbAluguel set status = 'CONCLUIDO' where idMesa = @idMesa;";
+            con.CommandType = CommandType.Text;
+
+            con.Parameters.Clear();
+            con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+
+            con.Connection = Connection.getConnection();
+            int resp = con.ExecuteNonQuery();
+
+            Connection.closeConnection();
+
+            if (toFreeTables(idMesa) != 1) 
+            {
+                MessageBox.Show("Erro ao alterar o status da mesa!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            return resp;
+        }
+
+        //função sql liberar mesas alugadas
+        public int toFreeTables(int idMesa)
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "update tbMesa set status = 'DISPONIVEL' where idMesa = @idMesa;";
+            con.CommandType = CommandType.Text;
+
+            con.Parameters.Clear();
+            con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+
+            con.Connection = Connection.getConnection();
+            int resp = con.ExecuteNonQuery();
+
+            Connection.closeConnection();
+            return resp;
+        }
 
         //click botão pesquisar
         private void btnPesquisar_Click(object sender, EventArgs e)
@@ -169,7 +294,7 @@ namespace projetoAlugaMesa
             {
                 clearFields();
                 disableFields();
-                enableFieldsResearchUnavailabe();
+                researchRentedTables();
                 txtStatus.Text = "INDISPONIVEL";
             }
             else
@@ -190,15 +315,47 @@ namespace projetoAlugaMesa
         //click botão alugar
         private void btnAlugar_Click(object sender, EventArgs e)
         {
-            clearFields();
-            disableFields();
+            if (txtCliente.Text.Equals(""))
+            {
+                MessageBox.Show("Insira o nome do cliente!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+
+            }
+            else
+            {
+                try
+                {
+                    if (registerRentedTable(Convert.ToInt32(txtIdMesa.Text)) == 1)
+                    {
+                        clearFields();
+                        disableFields();
+                        MessageBox.Show("Mesa alugada com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao alugar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Erro ao alugar a mesa!\n(Já existe um cliente cadastrado com este nome).", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+            }
         }
 
         //click botão liberar
         private void btnLiberar_Click(object sender, EventArgs e)
         {
-            clearFields();
-            disableFields();
+            if (toFreeRentedTables(Convert.ToInt32(txtIdMesa.Text)) == 1)
+            {
+                clearFields();
+                disableFields();
+                MessageBox.Show("Mesa liberada com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                MessageBox.Show("Erro ao liberar a mesa!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void lstPesquisar_SelectedIndexChanged(object sender, EventArgs e) // incompleto
@@ -209,12 +366,22 @@ namespace projetoAlugaMesa
             }
             else
             {
-                //extraindo apenas o código da mesa a partir da listbox com split
-                char[] between = { ' ' };
-                string[] cod = lstPesquisar.SelectedItem.ToString().Split(between, StringSplitOptions.None);
-                int table = Convert.ToInt32(cod[1]);
-
-                enableFieldsResearchAvailabe();
+                if (rdbDisponiveis.Checked == true)
+                {
+                    //extraindo apenas o código da mesa a partir da listbox com split
+                    char[] between = { ' ' };
+                    string[] cod = lstPesquisar.SelectedItem.ToString().Split(between, StringSplitOptions.None);
+                    int table = Convert.ToInt32(cod[1]);
+                    researchAvailableTablesPrintData(table);
+                }
+                if (rdbIndisponiveis.Checked == true)
+                {
+                    //extraindo apenas o código da mesa a partir da listbox com split
+                    char[] between = { ' ' };
+                    string[] cod = lstPesquisar.SelectedItem.ToString().Split(between, StringSplitOptions.None);
+                    int table = Convert.ToInt32(cod[4]);
+                    researchUnavailableTablesPrintData(table);
+                }
             }
         }
 

@@ -59,7 +59,7 @@ namespace projetoAlugaMesa
             rdbIndisponiveis.Enabled = false;
             lstPesquisar.Enabled = false;
 
-            btnCadastrar.Focus();
+            txtQtdeCadeiras.Focus();
         }
 
         // habilitar campos botão pesquisar disponivel
@@ -219,7 +219,15 @@ namespace projetoAlugaMesa
             DR = con.ExecuteReader();
             DR.Read();
 
-            txtIdMesa.Text = DR.GetValue(0).ToString();
+            try
+            {
+                txtIdMesa.Text = DR.GetValue(0).ToString();
+            }
+            catch (Exception)
+            {
+                txtIdMesa.Text = "1";
+            }
+            
 
             Connection.closeConnection();
         }
@@ -310,7 +318,6 @@ namespace projetoAlugaMesa
         //click botão pesquisar
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-
             if (rdbDisponiveis.Checked == true)
             {
                 clearFields();
@@ -334,26 +341,33 @@ namespace projetoAlugaMesa
         //click botão alterar
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            if (txtStatus.Text.Equals("INDISPONIVEL"))
+            try
             {
-                MessageBox.Show("Não é possível alterar uma mesa indisponível!\nLibere-a antes na janela de aluguel!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            }
-            else
-            {
-                DialogResult resp = MessageBox.Show("Você realmente deseja alterar esta mesa? (Não é possível voltar atrás com esta operação).", "Mensagem do Sistema", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
-                if (resp == DialogResult.Yes)
+                if (txtStatus.Text.Equals("INDISPONIVEL"))
                 {
-                    if (changeTable(Convert.ToInt32(txtIdMesa.Text)) == 1)
+                    MessageBox.Show("Não é possível alterar uma mesa indisponível!\nLibere-a antes na janela de aluguel!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+                else
+                {
+                    DialogResult resp = MessageBox.Show("Você realmente deseja alterar esta mesa? (Não é possível voltar atrás com esta operação).", "Mensagem do Sistema", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
+                    if (resp == DialogResult.Yes)
                     {
-                        MessageBox.Show("Mesa alterada com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        clearFields();
-                        disableFields();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erro ao alterar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        if (changeTable(Convert.ToInt32(txtIdMesa.Text)) == 1)
+                        {
+                            MessageBox.Show("Mesa alterada com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                            clearFields();
+                            disableFields();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro ao alterar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        }
                     }
                 }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Insira a quantidade de cadeiras!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -396,6 +410,7 @@ namespace projetoAlugaMesa
                 char[] between = { ' ' };
                 string[] cod = lstPesquisar.SelectedItem.ToString().Split(between, StringSplitOptions.None);
                 int table = Convert.ToInt32(cod[1]);
+                txtQtdeCadeiras.Focus();
 
                 researchTablesPrintData(table);
             }
