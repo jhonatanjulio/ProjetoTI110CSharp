@@ -55,9 +55,9 @@ namespace projetoAlugaMesa
             this.gpbPesquisar.Controls.Add(this.rdbDisponiveis);
             this.gpbPesquisar.Controls.Add(this.btnPesquisar);
             this.gpbPesquisar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbPesquisar.Location = new System.Drawing.Point(350, 27);
+            this.gpbPesquisar.Location = new System.Drawing.Point(337, 27);
             this.gpbPesquisar.Name = "gpbPesquisar";
-            this.gpbPesquisar.Size = new System.Drawing.Size(374, 350);
+            this.gpbPesquisar.Size = new System.Drawing.Size(414, 350);
             this.gpbPesquisar.TabIndex = 24;
             this.gpbPesquisar.TabStop = false;
             this.gpbPesquisar.Text = "Pesquisar Mesas:";
@@ -66,15 +66,16 @@ namespace projetoAlugaMesa
             // 
             this.lstPesquisar.FormattingEnabled = true;
             this.lstPesquisar.ItemHeight = 20;
-            this.lstPesquisar.Location = new System.Drawing.Point(57, 80);
+            this.lstPesquisar.Location = new System.Drawing.Point(6, 80);
             this.lstPesquisar.Name = "lstPesquisar";
-            this.lstPesquisar.Size = new System.Drawing.Size(270, 184);
+            this.lstPesquisar.Size = new System.Drawing.Size(402, 184);
             this.lstPesquisar.TabIndex = 18;
             this.lstPesquisar.SelectedIndexChanged += new System.EventHandler(this.lstPesquisar_SelectedIndexChanged);
             // 
             // rdbIndisponiveis
             // 
             this.rdbIndisponiveis.AutoSize = true;
+            this.rdbIndisponiveis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdbIndisponiveis.Location = new System.Drawing.Point(233, 41);
             this.rdbIndisponiveis.Name = "rdbIndisponiveis";
             this.rdbIndisponiveis.Size = new System.Drawing.Size(94, 24);
@@ -87,6 +88,7 @@ namespace projetoAlugaMesa
             // rdbDisponiveis
             // 
             this.rdbDisponiveis.AutoSize = true;
+            this.rdbDisponiveis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdbDisponiveis.Location = new System.Drawing.Point(64, 41);
             this.rdbDisponiveis.Name = "rdbDisponiveis";
             this.rdbDisponiveis.Size = new System.Drawing.Size(107, 24);
@@ -99,6 +101,7 @@ namespace projetoAlugaMesa
             // btnPesquisar
             // 
             this.btnPesquisar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnPesquisar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPesquisar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPesquisar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPesquisar.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisar.Image")));
