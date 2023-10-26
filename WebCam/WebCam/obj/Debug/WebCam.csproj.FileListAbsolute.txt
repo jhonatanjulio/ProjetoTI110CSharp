@@ -1,0 +1,17 @@
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\bin\Debug\WebCam.exe.config
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\bin\Debug\WebCam.exe
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\bin\Debug\WebCam.pdb
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\bin\Debug\AForge.dll
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\bin\Debug\AForge.Video.DirectShow.dll
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\bin\Debug\AForge.Video.dll
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\bin\Debug\AForge.xml
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\bin\Debug\AForge.Video.xml
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\bin\Debug\AForge.Video.DirectShow.xml
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\obj\Debug\WebCam.csproj.AssemblyReference.cache
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\obj\Debug\WebCam.Form1.resources
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\obj\Debug\WebCam.Properties.Resources.resources
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\obj\Debug\WebCam.csproj.GenerateResource.cache
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\obj\Debug\WebCam.csproj.CoreCompileInputs.cache
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\obj\Debug\WebCam.csproj.CopyComplete
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\obj\Debug\WebCam.exe
+C:\Users\jhonatan.jgmachado\source\repos\WebCam\WebCam\obj\Debug\WebCam.pdb
