@@ -138,7 +138,7 @@ namespace projetoAlugaMesa
         public void researchRentedTables()
         {
             MySqlCommand con = new MySqlCommand();
-            con.CommandText = "select cliente, idMesa, status from tbAluguel where status = 'EM ANDAMENTO';";
+            con.CommandText = "select idMesa, cliente, status, idAlug from tbAluguel where status = 'EM ANDAMENTO';";
             con.CommandType = CommandType.Text;
 
 
@@ -147,7 +147,7 @@ namespace projetoAlugaMesa
             DR = con.ExecuteReader();
             while (DR.Read())
             {
-                lstPesquisar.Items.Add("Mesa: " + DR.GetValue(0).ToString() + " | " + "Cliente: " + DR.GetValue(1).ToString() + " | " + "Status: " + DR.GetValue(2));
+                lstPesquisar.Items.Add("Mesa: " + DR.GetValue(0).ToString() + " | " + "Cliente: " + DR.GetValue(1).ToString() + " | " + "Status: " + DR.GetValue(2) + ": " + DR.GetValue(3));
             }
 
             Connection.closeConnection();
@@ -165,12 +165,12 @@ namespace projetoAlugaMesa
             con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
 
             con.Connection = Connection.getConnection();
-    
+
             int resp = con.ExecuteNonQuery();
 
             Connection.closeConnection();
 
-            if(changeStatusTable(idMesa) != 1)
+            if (changeStatusTable(idMesa) != 1)
             {
                 MessageBox.Show("Erro ao atualizar o status da mesa!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
@@ -220,14 +220,14 @@ namespace projetoAlugaMesa
         }
 
         //função sql para pesquisar todos os dados do registro e imprimir na textbox
-        public void researchUnavailableTablesPrintData(int idMesa)
+        public void researchUnavailableTablesPrintData(int idAlug)
         {
             MySqlCommand con = new MySqlCommand();
-            con.CommandText = "select alu.cliente, alu.idMesa, mesa.status from tbAluguel as alu inner join tbMesa as mesa on alu.idMesa = mesa.idMesa where alu.idMesa = @idMesa;";
+            con.CommandText = "select alu.cliente, alu.idMesa, mesa.status from tbAluguel as alu inner join tbMesa as mesa on alu.idMesa = mesa.idMesa where alu.idAlug = @idAlug;";
             con.CommandType = CommandType.Text;
 
             con.Parameters.Clear();
-            con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+            con.Parameters.Add("@idAlug", MySqlDbType.Int32).Value = idAlug;
 
             con.Connection = Connection.getConnection();
             MySqlDataReader DR;
@@ -243,21 +243,21 @@ namespace projetoAlugaMesa
         }
 
         //função sql liberar alugueis
-        public int toFreeRentedTables(int idMesa)
+        public int toFreeRentedTables(int idMesa, int idAlug)
         {
             MySqlCommand con = new MySqlCommand();
-            con.CommandText = "update tbAluguel set status = 'CONCLUIDO' where idMesa = @idMesa;";
+            con.CommandText = "update tbAluguel set status = 'CONCLUIDO' where idAlug = @id;";
             con.CommandType = CommandType.Text;
 
             con.Parameters.Clear();
-            con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+            con.Parameters.Add("@id", MySqlDbType.Int32).Value = idAlug;
 
             con.Connection = Connection.getConnection();
             int resp = con.ExecuteNonQuery();
 
             Connection.closeConnection();
 
-            if (toFreeTables(idMesa) != 1) 
+            if (toFreeTables(idMesa) != 1)
             {
                 MessageBox.Show("Erro ao alterar o status da mesa!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
@@ -346,7 +346,11 @@ namespace projetoAlugaMesa
         //click botão liberar
         private void btnLiberar_Click(object sender, EventArgs e)
         {
-            if (toFreeRentedTables(Convert.ToInt32(txtIdMesa.Text)) == 1)
+            char[] between = { ' ' };
+            string[] cod = lstPesquisar.SelectedItem.ToString().Split(between, StringSplitOptions.None);
+            int rentedTable = Convert.ToInt32(cod[cod.Length - 1]);
+
+            if (toFreeRentedTables(Convert.ToInt32(txtIdMesa.Text), rentedTable) == 1)
             {
                 clearFields();
                 disableFields();
@@ -358,7 +362,7 @@ namespace projetoAlugaMesa
             }
         }
 
-        private void lstPesquisar_SelectedIndexChanged(object sender, EventArgs e) // incompleto
+        private void lstPesquisar_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstPesquisar.SelectedItem == null)
             {
@@ -379,8 +383,8 @@ namespace projetoAlugaMesa
                     //extraindo apenas o código da mesa a partir da listbox com split
                     char[] between = { ' ' };
                     string[] cod = lstPesquisar.SelectedItem.ToString().Split(between, StringSplitOptions.None);
-                    int table = Convert.ToInt32(cod[4]);
-                    researchUnavailableTablesPrintData(table);
+                    int rentedTable = Convert.ToInt32(cod[cod.Length - 1]);
+                    researchUnavailableTablesPrintData(rentedTable);
                 }
             }
         }
