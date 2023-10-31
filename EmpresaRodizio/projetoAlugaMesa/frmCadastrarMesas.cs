@@ -31,7 +31,9 @@ namespace projetoAlugaMesa
             // desabilitando campos e radio button
             txtIdMesa.Enabled = false;
             txtQtdeCadeiras.Enabled = false;
-
+            dtpDataEntrada.Enabled = false;
+            dtpDataEntrada.Format = DateTimePickerFormat.Custom;
+            dtpDataEntrada.CustomFormat = " ";
             txtStatus.Enabled = false;
 
             // habilitando botões padrões
@@ -52,6 +54,9 @@ namespace projetoAlugaMesa
             // habilitando campos e botando status padrao
             txtQtdeCadeiras.Enabled = true;
             txtStatus.Text = "DISPONIVEL";
+            dtpDataEntrada.Enabled = true;
+
+            dtpDataEntrada.Format = DateTimePickerFormat.Short;
 
             // desabilitando o botão de pesquisar
             btnPesquisar.Enabled = false;
@@ -69,6 +74,7 @@ namespace projetoAlugaMesa
             btnAlterar.Enabled = true;
             btnExcluir.Enabled = true;
             btnLimpar.Enabled = true;
+            dtpDataEntrada.Format = DateTimePickerFormat.Short;
 
             // habilitando campos
             txtQtdeCadeiras.Enabled = true;
@@ -88,6 +94,7 @@ namespace projetoAlugaMesa
             btnAlterar.Enabled = true;
             btnExcluir.Enabled = true;
             btnLimpar.Enabled = true;
+            dtpDataEntrada.Format = DateTimePickerFormat.Short;
 
             // habilitando campos
             txtQtdeCadeiras.Enabled = false;
@@ -120,13 +127,14 @@ namespace projetoAlugaMesa
         public int registerTables(int qtdCad)
         {
             MySqlCommand con = new MySqlCommand();
-            con.CommandText = "insert into tbMesa(qtdCad, status) values (@qtdCad, @status);";
+            con.CommandText = "insert into tbMesa(qtdCad, status, dataEntrada) values (@qtdCad, @status, @dataEntrada);";
             con.CommandType = CommandType.Text;
             string status = "DISPONIVEL";
 
             con.Parameters.Clear();
             con.Parameters.Add("@qtdCad", MySqlDbType.Int32).Value = qtdCad;
             con.Parameters.Add("@status", MySqlDbType.VarChar, 15).Value = status;
+            con.Parameters.Add("@dataEntrada", MySqlDbType.Date).Value = Convert.ToDateTime(dtpDataEntrada.Text);
 
             con.Connection = Connection.getConnection();
             int resp = con.ExecuteNonQuery();
@@ -155,7 +163,7 @@ namespace projetoAlugaMesa
             Connection.closeConnection();
         }
 
-        //função sql pesquisa mesas indisponíveis e que retorna o código da mesa
+        //função sql pesquisa mesas indisponíveis
         public void researchUnavailableTables()
         {
             MySqlCommand con = new MySqlCommand();
@@ -191,6 +199,7 @@ namespace projetoAlugaMesa
 
             txtIdMesa.Text = DR.GetValue(0).ToString();
             txtQtdeCadeiras.Text = DR.GetValue(1).ToString();
+            dtpDataEntrada.Text = DR.GetValue(2).ToString();
 
             if (DR.GetValue(2).ToString().Equals("DISPONIVEL"))
             {
@@ -311,7 +320,7 @@ namespace projetoAlugaMesa
             catch (Exception)
             {
 
-                MessageBox.Show("Insira a quantidade de cadeiras!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("Preencha todos os campos!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
 

@@ -45,6 +45,8 @@ namespace projetoAlugaMesa
             this.btnAlugar = new System.Windows.Forms.Button();
             this.lblIdMesa = new System.Windows.Forms.Label();
             this.txtIdMesa = new System.Windows.Forms.TextBox();
+            this.dtpDataEntrada = new System.Windows.Forms.DateTimePicker();
+            this.lblDataEntrada = new System.Windows.Forms.Label();
             this.gpbPesquisar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +57,7 @@ namespace projetoAlugaMesa
             this.gpbPesquisar.Controls.Add(this.rdbDisponiveis);
             this.gpbPesquisar.Controls.Add(this.btnPesquisar);
             this.gpbPesquisar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbPesquisar.Location = new System.Drawing.Point(337, 27);
+            this.gpbPesquisar.Location = new System.Drawing.Point(320, 31);
             this.gpbPesquisar.Name = "gpbPesquisar";
             this.gpbPesquisar.Size = new System.Drawing.Size(414, 350);
             this.gpbPesquisar.TabIndex = 24;
@@ -118,19 +120,18 @@ namespace projetoAlugaMesa
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(66, 227);
+            this.lblStatus.Location = new System.Drawing.Point(54, 203);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(121, 20);
+            this.lblStatus.Size = new System.Drawing.Size(125, 20);
             this.lblStatus.TabIndex = 23;
-            this.lblStatus.Text = "Status da Mesa";
+            this.lblStatus.Text = "Status da Mesa:";
             // 
             // txtStatus
             // 
-            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(193, 224);
-            this.txtStatus.Multiline = true;
+            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtStatus.Location = new System.Drawing.Point(58, 226);
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(127, 28);
+            this.txtStatus.Size = new System.Drawing.Size(171, 26);
             this.txtStatus.TabIndex = 22;
             this.txtStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -138,19 +139,18 @@ namespace projetoAlugaMesa
             // 
             this.lblCliente.AutoSize = true;
             this.lblCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCliente.Location = new System.Drawing.Point(66, 127);
+            this.lblCliente.Location = new System.Drawing.Point(54, 76);
             this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(126, 20);
+            this.lblCliente.Size = new System.Drawing.Size(130, 20);
             this.lblCliente.TabIndex = 21;
-            this.lblCliente.Text = "Nome do Cliente";
+            this.lblCliente.Text = "Nome do Cliente:";
             // 
             // txtCliente
             // 
             this.txtCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtCliente.Location = new System.Drawing.Point(198, 124);
-            this.txtCliente.Multiline = true;
+            this.txtCliente.Location = new System.Drawing.Point(58, 99);
             this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(83, 28);
+            this.txtCliente.Size = new System.Drawing.Size(236, 26);
             this.txtCliente.TabIndex = 20;
             // 
             // btnVoltar
@@ -221,26 +221,47 @@ namespace projetoAlugaMesa
             // 
             this.lblIdMesa.AutoSize = true;
             this.lblIdMesa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdMesa.Location = new System.Drawing.Point(66, 173);
+            this.lblIdMesa.Location = new System.Drawing.Point(54, 139);
             this.lblIdMesa.Name = "lblIdMesa";
-            this.lblIdMesa.Size = new System.Drawing.Size(165, 20);
+            this.lblIdMesa.Size = new System.Drawing.Size(169, 20);
             this.lblIdMesa.TabIndex = 26;
-            this.lblIdMesa.Text = "Identificação da Mesa";
+            this.lblIdMesa.Text = "Identificação da Mesa:";
             // 
             // txtIdMesa
             // 
             this.txtIdMesa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdMesa.Location = new System.Drawing.Point(237, 170);
-            this.txtIdMesa.Multiline = true;
+            this.txtIdMesa.Location = new System.Drawing.Point(58, 162);
             this.txtIdMesa.Name = "txtIdMesa";
-            this.txtIdMesa.Size = new System.Drawing.Size(83, 28);
+            this.txtIdMesa.Size = new System.Drawing.Size(127, 26);
             this.txtIdMesa.TabIndex = 25;
+            // 
+            // dtpDataEntrada
+            // 
+            this.dtpDataEntrada.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDataEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.dtpDataEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataEntrada.Location = new System.Drawing.Point(58, 291);
+            this.dtpDataEntrada.Name = "dtpDataEntrada";
+            this.dtpDataEntrada.Size = new System.Drawing.Size(121, 26);
+            this.dtpDataEntrada.TabIndex = 49;
+            // 
+            // lblDataEntrada
+            // 
+            this.lblDataEntrada.AutoSize = true;
+            this.lblDataEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataEntrada.Location = new System.Drawing.Point(54, 268);
+            this.lblDataEntrada.Name = "lblDataEntrada";
+            this.lblDataEntrada.Size = new System.Drawing.Size(133, 20);
+            this.lblDataEntrada.TabIndex = 48;
+            this.lblDataEntrada.Text = "Data da Reserva:";
             // 
             // frmAlugarMesa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.dtpDataEntrada);
+            this.Controls.Add(this.lblDataEntrada);
             this.Controls.Add(this.lblIdMesa);
             this.Controls.Add(this.txtIdMesa);
             this.Controls.Add(this.gpbPesquisar);
@@ -282,5 +303,7 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.Label lblIdMesa;
         private System.Windows.Forms.TextBox txtIdMesa;
         private System.Windows.Forms.ListBox lstPesquisar;
+        private System.Windows.Forms.DateTimePicker dtpDataEntrada;
+        private System.Windows.Forms.Label lblDataEntrada;
     }
 }
