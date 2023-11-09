@@ -32,5 +32,12 @@ namespace projetoAlugaMesa
             open.Show();
             this.Hide();
         }
+
+        private void btnCadastrarGarcom_Click(object sender, EventArgs e)
+        {
+            frmCadastrarGarcom open = new frmCadastrarGarcom();
+            open.Show();
+            this.Hide();
+        }
     }
 }

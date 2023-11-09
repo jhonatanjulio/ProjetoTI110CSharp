@@ -34,13 +34,13 @@ namespace projetoAlugaMesa
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.gpbPesquisar = new System.Windows.Forms.GroupBox();
             this.lstPesquisar = new System.Windows.Forms.ListBox();
-            this.rdbIndisponiveis = new System.Windows.Forms.RadioButton();
-            this.rdbDisponiveis = new System.Windows.Forms.RadioButton();
+            this.rdbInativos = new System.Windows.Forms.RadioButton();
+            this.rdbAtivos = new System.Windows.Forms.RadioButton();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.lblNome = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.lblIdGarcom = new System.Windows.Forms.Label();
-            this.txtIdMesa = new System.Windows.Forms.TextBox();
+            this.txtIdGarcom = new System.Windows.Forms.TextBox();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -51,16 +51,18 @@ namespace projetoAlugaMesa
             this.mtbCPF = new System.Windows.Forms.MaskedTextBox();
             this.lblDataEntrada = new System.Windows.Forms.Label();
             this.dtpDataEntrada = new System.Windows.Forms.DateTimePicker();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.gpbStatus = new System.Windows.Forms.GroupBox();
+            this.rdbAtivo = new System.Windows.Forms.RadioButton();
+            this.rdbInativo = new System.Windows.Forms.RadioButton();
             this.gpbPesquisar.SuspendLayout();
+            this.gpbStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(46, 160);
+            this.lblEmail.Location = new System.Drawing.Point(47, 130);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(53, 20);
             this.lblEmail.TabIndex = 40;
@@ -69,7 +71,7 @@ namespace projetoAlugaMesa
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtEmail.Location = new System.Drawing.Point(103, 157);
+            this.txtEmail.Location = new System.Drawing.Point(104, 127);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(213, 26);
             this.txtEmail.TabIndex = 39;
@@ -78,8 +80,8 @@ namespace projetoAlugaMesa
             // gpbPesquisar
             // 
             this.gpbPesquisar.Controls.Add(this.lstPesquisar);
-            this.gpbPesquisar.Controls.Add(this.rdbIndisponiveis);
-            this.gpbPesquisar.Controls.Add(this.rdbDisponiveis);
+            this.gpbPesquisar.Controls.Add(this.rdbInativos);
+            this.gpbPesquisar.Controls.Add(this.rdbAtivos);
             this.gpbPesquisar.Controls.Add(this.btnPesquisar);
             this.gpbPesquisar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gpbPesquisar.Location = new System.Drawing.Point(364, 23);
@@ -93,32 +95,33 @@ namespace projetoAlugaMesa
             // 
             this.lstPesquisar.FormattingEnabled = true;
             this.lstPesquisar.ItemHeight = 20;
-            this.lstPesquisar.Location = new System.Drawing.Point(57, 80);
+            this.lstPesquisar.Location = new System.Drawing.Point(6, 81);
             this.lstPesquisar.Name = "lstPesquisar";
-            this.lstPesquisar.Size = new System.Drawing.Size(270, 184);
+            this.lstPesquisar.Size = new System.Drawing.Size(362, 184);
             this.lstPesquisar.TabIndex = 18;
+            this.lstPesquisar.SelectedIndexChanged += new System.EventHandler(this.lstPesquisar_SelectedIndexChanged);
             // 
-            // rdbIndisponiveis
+            // rdbInativos
             // 
-            this.rdbIndisponiveis.AutoSize = true;
-            this.rdbIndisponiveis.Location = new System.Drawing.Point(223, 41);
-            this.rdbIndisponiveis.Name = "rdbIndisponiveis";
-            this.rdbIndisponiveis.Size = new System.Drawing.Size(82, 24);
-            this.rdbIndisponiveis.TabIndex = 1;
-            this.rdbIndisponiveis.TabStop = true;
-            this.rdbIndisponiveis.Text = "Inativos";
-            this.rdbIndisponiveis.UseVisualStyleBackColor = true;
+            this.rdbInativos.AutoSize = true;
+            this.rdbInativos.Location = new System.Drawing.Point(223, 41);
+            this.rdbInativos.Name = "rdbInativos";
+            this.rdbInativos.Size = new System.Drawing.Size(82, 24);
+            this.rdbInativos.TabIndex = 1;
+            this.rdbInativos.TabStop = true;
+            this.rdbInativos.Text = "Inativos";
+            this.rdbInativos.UseVisualStyleBackColor = true;
             // 
-            // rdbDisponiveis
+            // rdbAtivos
             // 
-            this.rdbDisponiveis.AutoSize = true;
-            this.rdbDisponiveis.Location = new System.Drawing.Point(71, 41);
-            this.rdbDisponiveis.Name = "rdbDisponiveis";
-            this.rdbDisponiveis.Size = new System.Drawing.Size(70, 24);
-            this.rdbDisponiveis.TabIndex = 0;
-            this.rdbDisponiveis.TabStop = true;
-            this.rdbDisponiveis.Text = "Ativos";
-            this.rdbDisponiveis.UseVisualStyleBackColor = true;
+            this.rdbAtivos.AutoSize = true;
+            this.rdbAtivos.Location = new System.Drawing.Point(71, 41);
+            this.rdbAtivos.Name = "rdbAtivos";
+            this.rdbAtivos.Size = new System.Drawing.Size(70, 24);
+            this.rdbAtivos.TabIndex = 0;
+            this.rdbAtivos.TabStop = true;
+            this.rdbAtivos.Text = "Ativos";
+            this.rdbAtivos.UseVisualStyleBackColor = true;
             // 
             // btnPesquisar
             // 
@@ -134,12 +137,13 @@ namespace projetoAlugaMesa
             this.btnPesquisar.Text = "&Pesquisar";
             this.btnPesquisar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisar.UseVisualStyleBackColor = false;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // lblNome
             // 
             this.lblNome.AutoSize = true;
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNome.Location = new System.Drawing.Point(46, 105);
+            this.lblNome.Location = new System.Drawing.Point(47, 75);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(51, 20);
             this.lblNome.TabIndex = 37;
@@ -148,7 +152,7 @@ namespace projetoAlugaMesa
             // txtNome
             // 
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtNome.Location = new System.Drawing.Point(103, 105);
+            this.txtNome.Location = new System.Drawing.Point(104, 75);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(213, 26);
             this.txtNome.TabIndex = 36;
@@ -157,20 +161,20 @@ namespace projetoAlugaMesa
             // 
             this.lblIdGarcom.AutoSize = true;
             this.lblIdGarcom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdGarcom.Location = new System.Drawing.Point(46, 53);
+            this.lblIdGarcom.Location = new System.Drawing.Point(47, 23);
             this.lblIdGarcom.Name = "lblIdGarcom";
             this.lblIdGarcom.Size = new System.Drawing.Size(183, 20);
             this.lblIdGarcom.TabIndex = 35;
             this.lblIdGarcom.Text = "Identificação do Garçom";
             // 
-            // txtIdMesa
+            // txtIdGarcom
             // 
-            this.txtIdMesa.Enabled = false;
-            this.txtIdMesa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtIdMesa.Location = new System.Drawing.Point(233, 50);
-            this.txtIdMesa.Name = "txtIdMesa";
-            this.txtIdMesa.Size = new System.Drawing.Size(83, 26);
-            this.txtIdMesa.TabIndex = 34;
+            this.txtIdGarcom.Enabled = false;
+            this.txtIdGarcom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtIdGarcom.Location = new System.Drawing.Point(234, 20);
+            this.txtIdGarcom.Name = "txtIdGarcom";
+            this.txtIdGarcom.Size = new System.Drawing.Size(83, 26);
+            this.txtIdGarcom.TabIndex = 34;
             // 
             // btnVoltar
             // 
@@ -186,6 +190,7 @@ namespace projetoAlugaMesa
             this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = false;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // btnLimpar
             // 
@@ -201,6 +206,7 @@ namespace projetoAlugaMesa
             this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = false;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnExcluir
             // 
@@ -246,6 +252,7 @@ namespace projetoAlugaMesa
             this.btnCadastrar.Text = "&Cadastrar";
             this.btnCadastrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCadastrar.UseVisualStyleBackColor = false;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // btnNovo
             // 
@@ -261,12 +268,13 @@ namespace projetoAlugaMesa
             this.btnNovo.Text = "&Novo";
             this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNovo.UseVisualStyleBackColor = false;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // lblCPF
             // 
             this.lblCPF.AutoSize = true;
             this.lblCPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCPF.Location = new System.Drawing.Point(46, 209);
+            this.lblCPF.Location = new System.Drawing.Point(47, 179);
             this.lblCPF.Name = "lblCPF";
             this.lblCPF.Size = new System.Drawing.Size(40, 20);
             this.lblCPF.TabIndex = 42;
@@ -275,7 +283,7 @@ namespace projetoAlugaMesa
             // mtbCPF
             // 
             this.mtbCPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mtbCPF.Location = new System.Drawing.Point(103, 206);
+            this.mtbCPF.Location = new System.Drawing.Point(104, 176);
             this.mtbCPF.Mask = "999,999,999-99";
             this.mtbCPF.Name = "mtbCPF";
             this.mtbCPF.Size = new System.Drawing.Size(126, 26);
@@ -285,7 +293,7 @@ namespace projetoAlugaMesa
             // 
             this.lblDataEntrada.AutoSize = true;
             this.lblDataEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataEntrada.Location = new System.Drawing.Point(46, 260);
+            this.lblDataEntrada.Location = new System.Drawing.Point(47, 230);
             this.lblDataEntrada.Name = "lblDataEntrada";
             this.lblDataEntrada.Size = new System.Drawing.Size(127, 20);
             this.lblDataEntrada.TabIndex = 44;
@@ -295,38 +303,51 @@ namespace projetoAlugaMesa
             // 
             this.dtpDataEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.dtpDataEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataEntrada.Location = new System.Drawing.Point(179, 255);
+            this.dtpDataEntrada.Location = new System.Drawing.Point(180, 225);
             this.dtpDataEntrada.Name = "dtpDataEntrada";
             this.dtpDataEntrada.Size = new System.Drawing.Size(137, 26);
             this.dtpDataEntrada.TabIndex = 45;
             // 
-            // lblStatus
+            // gpbStatus
             // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(46, 306);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(56, 20);
-            this.lblStatus.TabIndex = 47;
-            this.lblStatus.Text = "Status";
+            this.gpbStatus.Controls.Add(this.rdbInativo);
+            this.gpbStatus.Controls.Add(this.rdbAtivo);
+            this.gpbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.gpbStatus.Location = new System.Drawing.Point(51, 274);
+            this.gpbStatus.Name = "gpbStatus";
+            this.gpbStatus.Size = new System.Drawing.Size(179, 76);
+            this.gpbStatus.TabIndex = 48;
+            this.gpbStatus.TabStop = false;
+            this.gpbStatus.Text = "Status";
             // 
-            // txtStatus
+            // rdbAtivo
             // 
-            this.txtStatus.Enabled = false;
-            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtStatus.Location = new System.Drawing.Point(103, 303);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(213, 26);
-            this.txtStatus.TabIndex = 46;
-            this.txtStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.rdbAtivo.AutoSize = true;
+            this.rdbAtivo.Location = new System.Drawing.Point(16, 34);
+            this.rdbAtivo.Name = "rdbAtivo";
+            this.rdbAtivo.Size = new System.Drawing.Size(62, 24);
+            this.rdbAtivo.TabIndex = 0;
+            this.rdbAtivo.TabStop = true;
+            this.rdbAtivo.Text = "Ativo";
+            this.rdbAtivo.UseVisualStyleBackColor = true;
+            // 
+            // rdbInativo
+            // 
+            this.rdbInativo.AutoSize = true;
+            this.rdbInativo.Location = new System.Drawing.Point(84, 34);
+            this.rdbInativo.Name = "rdbInativo";
+            this.rdbInativo.Size = new System.Drawing.Size(74, 24);
+            this.rdbInativo.TabIndex = 1;
+            this.rdbInativo.TabStop = true;
+            this.rdbInativo.Text = "Inativo";
+            this.rdbInativo.UseVisualStyleBackColor = true;
             // 
             // frmCadastrarGarcom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.txtStatus);
+            this.Controls.Add(this.gpbStatus);
             this.Controls.Add(this.dtpDataEntrada);
             this.Controls.Add(this.lblDataEntrada);
             this.Controls.Add(this.mtbCPF);
@@ -337,7 +358,7 @@ namespace projetoAlugaMesa
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.lblIdGarcom);
-            this.Controls.Add(this.txtIdMesa);
+            this.Controls.Add(this.txtIdGarcom);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnExcluir);
@@ -352,6 +373,8 @@ namespace projetoAlugaMesa
             this.Text = "Rodízio - Cadastrar Garçom";
             this.gpbPesquisar.ResumeLayout(false);
             this.gpbPesquisar.PerformLayout();
+            this.gpbStatus.ResumeLayout(false);
+            this.gpbStatus.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -363,13 +386,13 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.GroupBox gpbPesquisar;
         private System.Windows.Forms.ListBox lstPesquisar;
-        private System.Windows.Forms.RadioButton rdbIndisponiveis;
-        private System.Windows.Forms.RadioButton rdbDisponiveis;
+        private System.Windows.Forms.RadioButton rdbInativos;
+        private System.Windows.Forms.RadioButton rdbAtivos;
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label lblIdGarcom;
-        private System.Windows.Forms.TextBox txtIdMesa;
+        private System.Windows.Forms.TextBox txtIdGarcom;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnExcluir;
@@ -380,7 +403,8 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.MaskedTextBox mtbCPF;
         private System.Windows.Forms.Label lblDataEntrada;
         private System.Windows.Forms.DateTimePicker dtpDataEntrada;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.GroupBox gpbStatus;
+        private System.Windows.Forms.RadioButton rdbInativo;
+        private System.Windows.Forms.RadioButton rdbAtivo;
     }
 }

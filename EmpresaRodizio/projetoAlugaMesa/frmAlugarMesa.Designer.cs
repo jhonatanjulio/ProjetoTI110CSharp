@@ -45,7 +45,7 @@ namespace projetoAlugaMesa
             this.btnAlugar = new System.Windows.Forms.Button();
             this.lblIdMesa = new System.Windows.Forms.Label();
             this.txtIdMesa = new System.Windows.Forms.TextBox();
-            this.dtpDataEntrada = new System.Windows.Forms.DateTimePicker();
+            this.dtpDataAluguel = new System.Windows.Forms.DateTimePicker();
             this.lblDataEntrada = new System.Windows.Forms.Label();
             this.gpbPesquisar.SuspendLayout();
             this.SuspendLayout();
@@ -235,15 +235,15 @@ namespace projetoAlugaMesa
             this.txtIdMesa.Size = new System.Drawing.Size(127, 26);
             this.txtIdMesa.TabIndex = 25;
             // 
-            // dtpDataEntrada
+            // dtpDataAluguel
             // 
-            this.dtpDataEntrada.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDataEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.dtpDataEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataEntrada.Location = new System.Drawing.Point(58, 291);
-            this.dtpDataEntrada.Name = "dtpDataEntrada";
-            this.dtpDataEntrada.Size = new System.Drawing.Size(121, 26);
-            this.dtpDataEntrada.TabIndex = 49;
+            this.dtpDataAluguel.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDataAluguel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.dtpDataAluguel.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataAluguel.Location = new System.Drawing.Point(58, 291);
+            this.dtpDataAluguel.Name = "dtpDataAluguel";
+            this.dtpDataAluguel.Size = new System.Drawing.Size(121, 26);
+            this.dtpDataAluguel.TabIndex = 49;
             // 
             // lblDataEntrada
             // 
@@ -260,7 +260,7 @@ namespace projetoAlugaMesa
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.dtpDataEntrada);
+            this.Controls.Add(this.dtpDataAluguel);
             this.Controls.Add(this.lblDataEntrada);
             this.Controls.Add(this.lblIdMesa);
             this.Controls.Add(this.txtIdMesa);
@@ -303,7 +303,7 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.Label lblIdMesa;
         private System.Windows.Forms.TextBox txtIdMesa;
         private System.Windows.Forms.ListBox lstPesquisar;
-        private System.Windows.Forms.DateTimePicker dtpDataEntrada;
+        private System.Windows.Forms.DateTimePicker dtpDataAluguel;
         private System.Windows.Forms.Label lblDataEntrada;
     }
 }

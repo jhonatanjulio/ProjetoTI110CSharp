@@ -57,6 +57,7 @@ namespace projetoAlugaMesa
             dtpDataEntrada.Enabled = true;
 
             dtpDataEntrada.Format = DateTimePickerFormat.Short;
+            dtpDataEntrada.Value = DateTime.Today;
 
             // desabilitando o botão de pesquisar
             btnPesquisar.Enabled = false;

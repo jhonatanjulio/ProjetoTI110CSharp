@@ -31,9 +31,9 @@ namespace projetoAlugaMesa
             txtCliente.Enabled = false;
             txtIdMesa.Enabled = false;
             txtStatus.Enabled = false;
-            dtpDataEntrada.Enabled = false;
-            dtpDataEntrada.Format = DateTimePickerFormat.Custom;
-            dtpDataEntrada.CustomFormat = " ";
+            dtpDataAluguel.Enabled = false;
+            dtpDataAluguel.Format = DateTimePickerFormat.Custom;
+            dtpDataAluguel.CustomFormat = " ";
 
             // habilitando botões padrões
             btnPesquisar.Enabled = true;
@@ -53,8 +53,9 @@ namespace projetoAlugaMesa
             txtCliente.Enabled = true;
             txtIdMesa.Enabled = false;
             txtStatus.Enabled = false;
-            dtpDataEntrada.Enabled = true;
-            dtpDataEntrada.Format = DateTimePickerFormat.Short;
+            dtpDataAluguel.Enabled = true;
+            dtpDataAluguel.Format = DateTimePickerFormat.Short;
+            dtpDataAluguel.Value = DateTime.Today;
 
             rdbDisponiveis.Enabled = true;
             rdbIndisponiveis.Enabled = true;
@@ -73,7 +74,7 @@ namespace projetoAlugaMesa
             txtCliente.Enabled = false;
             txtIdMesa.Enabled = false;
             txtStatus.Enabled = false;
-            dtpDataEntrada.Format = DateTimePickerFormat.Short;
+            dtpDataAluguel.Format = DateTimePickerFormat.Short;
 
             rdbDisponiveis.Enabled = true;
             rdbIndisponiveis.Enabled = true;
@@ -142,11 +143,12 @@ namespace projetoAlugaMesa
         public int registerRentedTable(int idMesa)
         {
             MySqlCommand con = new MySqlCommand();
-            con.CommandText = "insert into tbAluguel(cliente, idMesa) values (@cliente, @idMesa);";
+            con.CommandText = "insert into tbAluguel(cliente, dataAluguel, idMesa) values (@cliente, @dataAluguel, @idMesa);";
             con.CommandType = CommandType.Text;
 
             con.Parameters.Clear();
             con.Parameters.Add("@cliente", MySqlDbType.VarChar, 20).Value = txtCliente.Text;
+            con.Parameters.Add("@dataAluguel", MySqlDbType.Date).Value = Convert.ToDateTime(dtpDataAluguel.Text);
             con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
 
             con.Connection = Connection.getConnection();
@@ -223,9 +225,7 @@ namespace projetoAlugaMesa
             txtIdMesa.Text = DR.GetValue(1).ToString();
             txtStatus.Text = DR.GetValue(2).ToString();
             enableFieldsResearchUnavailabe();
-            dtpDataEntrada.Format = DateTimePickerFormat.Short;
-            dtpDataEntrada.Text = DR.GetValue(3).ToString();
-            
+            dtpDataAluguel.Text = DR.GetValue(3).ToString();
 
             Connection.closeConnection();
         }
