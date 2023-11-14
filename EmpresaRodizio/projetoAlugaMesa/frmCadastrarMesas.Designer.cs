@@ -47,6 +47,8 @@ namespace projetoAlugaMesa
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.txtStatus = new System.Windows.Forms.TextBox();
+            this.dtpDataEntrada = new System.Windows.Forms.DateTimePicker();
+            this.lblDataEntrada = new System.Windows.Forms.Label();
             this.gpbPesquisar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -149,10 +151,9 @@ namespace projetoAlugaMesa
             // txtIdMesa
             // 
             this.txtIdMesa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtIdMesa.Location = new System.Drawing.Point(223, 61);
-            this.txtIdMesa.Multiline = true;
+            this.txtIdMesa.Location = new System.Drawing.Point(56, 87);
             this.txtIdMesa.Name = "txtIdMesa";
-            this.txtIdMesa.Size = new System.Drawing.Size(83, 28);
+            this.txtIdMesa.Size = new System.Drawing.Size(83, 26);
             this.txtIdMesa.TabIndex = 8;
             // 
             // lblIdMesa
@@ -161,27 +162,26 @@ namespace projetoAlugaMesa
             this.lblIdMesa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIdMesa.Location = new System.Drawing.Point(52, 64);
             this.lblIdMesa.Name = "lblIdMesa";
-            this.lblIdMesa.Size = new System.Drawing.Size(165, 20);
+            this.lblIdMesa.Size = new System.Drawing.Size(169, 20);
             this.lblIdMesa.TabIndex = 9;
-            this.lblIdMesa.Text = "Identificação da Mesa";
+            this.lblIdMesa.Text = "Identificação da Mesa:";
             // 
             // lblQtdeCadeiras
             // 
             this.lblQtdeCadeiras.AutoSize = true;
             this.lblQtdeCadeiras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdeCadeiras.Location = new System.Drawing.Point(52, 116);
+            this.lblQtdeCadeiras.Location = new System.Drawing.Point(52, 129);
             this.lblQtdeCadeiras.Name = "lblQtdeCadeiras";
-            this.lblQtdeCadeiras.Size = new System.Drawing.Size(181, 20);
+            this.lblQtdeCadeiras.Size = new System.Drawing.Size(185, 20);
             this.lblQtdeCadeiras.TabIndex = 11;
-            this.lblQtdeCadeiras.Text = "Quantidade de Cadeiras";
+            this.lblQtdeCadeiras.Text = "Quantidade de Cadeiras:";
             // 
             // txtQtdeCadeiras
             // 
             this.txtQtdeCadeiras.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtQtdeCadeiras.Location = new System.Drawing.Point(239, 113);
-            this.txtQtdeCadeiras.Multiline = true;
+            this.txtQtdeCadeiras.Location = new System.Drawing.Point(56, 152);
             this.txtQtdeCadeiras.Name = "txtQtdeCadeiras";
-            this.txtQtdeCadeiras.Size = new System.Drawing.Size(83, 28);
+            this.txtQtdeCadeiras.Size = new System.Drawing.Size(83, 26);
             this.txtQtdeCadeiras.TabIndex = 10;
             // 
             // gpbPesquisar
@@ -252,27 +252,47 @@ namespace projetoAlugaMesa
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(52, 171);
+            this.lblStatus.Location = new System.Drawing.Point(52, 263);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(121, 20);
+            this.lblStatus.Size = new System.Drawing.Size(125, 20);
             this.lblStatus.TabIndex = 27;
-            this.lblStatus.Text = "Status da Mesa";
+            this.lblStatus.Text = "Status da Mesa:";
             // 
             // txtStatus
             // 
-            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(179, 168);
-            this.txtStatus.Multiline = true;
+            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtStatus.Location = new System.Drawing.Point(56, 286);
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(127, 28);
+            this.txtStatus.Size = new System.Drawing.Size(127, 26);
             this.txtStatus.TabIndex = 26;
             this.txtStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // dtpDataEntrada
+            // 
+            this.dtpDataEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.dtpDataEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataEntrada.Location = new System.Drawing.Point(56, 219);
+            this.dtpDataEntrada.Name = "dtpDataEntrada";
+            this.dtpDataEntrada.Size = new System.Drawing.Size(121, 26);
+            this.dtpDataEntrada.TabIndex = 47;
+            // 
+            // lblDataEntrada
+            // 
+            this.lblDataEntrada.AutoSize = true;
+            this.lblDataEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataEntrada.Location = new System.Drawing.Point(52, 196);
+            this.lblDataEntrada.Name = "lblDataEntrada";
+            this.lblDataEntrada.Size = new System.Drawing.Size(131, 20);
+            this.lblDataEntrada.TabIndex = 46;
+            this.lblDataEntrada.Text = "Data de Entrada:";
             // 
             // frmCadastrarMesas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.dtpDataEntrada);
+            this.Controls.Add(this.lblDataEntrada);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.gpbPesquisar);
@@ -318,5 +338,7 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.DateTimePicker dtpDataEntrada;
+        private System.Windows.Forms.Label lblDataEntrada;
     }
 }

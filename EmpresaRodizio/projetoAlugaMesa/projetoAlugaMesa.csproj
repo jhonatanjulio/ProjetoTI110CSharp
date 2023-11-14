@@ -111,11 +111,23 @@
     <Compile Include="frmAlugarMesa.Designer.cs">
       <DependentUpon>frmAlugarMesa.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCadastrarGarcom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCadastrarGarcom.Designer.cs">
+      <DependentUpon>frmCadastrarGarcom.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCadastrarMesas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCadastrarMesas.Designer.cs">
       <DependentUpon>frmCadastrarMesas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCalculadoraGorjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCalculadoraGorjeta.Designer.cs">
+      <DependentUpon>frmCalculadoraGorjeta.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMenuPrincipal.cs">
       <SubType>Form</SubType>
@@ -128,8 +140,14 @@
     <EmbeddedResource Include="frmAlugarMesa.resx">
       <DependentUpon>frmAlugarMesa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCadastrarGarcom.resx">
+      <DependentUpon>frmCadastrarGarcom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCadastrarMesas.resx">
       <DependentUpon>frmCadastrarMesas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCalculadoraGorjeta.resx">
+      <DependentUpon>frmCalculadoraGorjeta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>

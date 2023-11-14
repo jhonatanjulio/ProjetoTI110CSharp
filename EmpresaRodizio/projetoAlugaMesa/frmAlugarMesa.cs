@@ -19,6 +19,15 @@ namespace projetoAlugaMesa
             disableFields();
         }
 
+        public frmAlugarMesa(string conta, string gorjeta, string total)
+        {
+            InitializeComponent();
+            disableFields();
+            txtValorConta.Text = conta;
+            txtGorjeta.Text = gorjeta;
+            txtValorTotal.Text = total;
+        }
+
         // desabilitar campos
         public void disableFields()
         {
@@ -31,33 +40,19 @@ namespace projetoAlugaMesa
             txtCliente.Enabled = false;
             txtIdMesa.Enabled = false;
             txtStatus.Enabled = false;
+            dtpDataAluguel.Enabled = false;
+            dtpDataAluguel.Format = DateTimePickerFormat.Custom;
+            dtpDataAluguel.CustomFormat = " ";
+
+            txtValorConta.Enabled = false;
+            txtGorjeta.Enabled = false;
+            txtValorTotal.Enabled = false;
 
             // habilitando botões padrões
             btnPesquisar.Enabled = true;
             rdbDisponiveis.Enabled = true;
             rdbIndisponiveis.Enabled = true;
             lstPesquisar.Enabled = true;
-        }
-
-        // habilitar campos botão novo
-        public void enableFieldsNew()
-        {
-            // habilitando botões
-            btnAlugar.Enabled = true;
-            btnLimpar.Enabled = true;
-
-            // habilitando campos
-            txtCliente.Enabled = true;
-            txtIdMesa.Enabled = true;
-            txtStatus.Enabled = true;
-
-            // desabilitando o botão de pesquisar
-            btnPesquisar.Enabled = false;
-            rdbDisponiveis.Enabled = false;
-            rdbIndisponiveis.Enabled = false;
-            lstPesquisar.Enabled = false;
-
-            btnAlugar.Focus();
         }
 
         // habilitar campos botão pesquisar quando mesa estiver disponivel
@@ -71,6 +66,9 @@ namespace projetoAlugaMesa
             txtCliente.Enabled = true;
             txtIdMesa.Enabled = false;
             txtStatus.Enabled = false;
+            dtpDataAluguel.Enabled = true;
+            dtpDataAluguel.Format = DateTimePickerFormat.Short;
+            dtpDataAluguel.Value = DateTime.Today;
 
             rdbDisponiveis.Enabled = true;
             rdbIndisponiveis.Enabled = true;
@@ -89,6 +87,7 @@ namespace projetoAlugaMesa
             txtCliente.Enabled = false;
             txtIdMesa.Enabled = false;
             txtStatus.Enabled = false;
+            dtpDataAluguel.Format = DateTimePickerFormat.Short;
 
             rdbDisponiveis.Enabled = true;
             rdbIndisponiveis.Enabled = true;
@@ -157,11 +156,12 @@ namespace projetoAlugaMesa
         public int registerRentedTable(int idMesa)
         {
             MySqlCommand con = new MySqlCommand();
-            con.CommandText = "insert into tbAluguel(cliente, idMesa) values (@cliente, @idMesa);";
+            con.CommandText = "insert into tbAluguel(cliente, dataAluguel, idMesa) values (@cliente, @dataAluguel, @idMesa);";
             con.CommandType = CommandType.Text;
 
             con.Parameters.Clear();
             con.Parameters.Add("@cliente", MySqlDbType.VarChar, 20).Value = txtCliente.Text;
+            con.Parameters.Add("@dataAluguel", MySqlDbType.Date).Value = Convert.ToDateTime(dtpDataAluguel.Text);
             con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
 
             con.Connection = Connection.getConnection();
@@ -196,7 +196,7 @@ namespace projetoAlugaMesa
             return resp;
         }
 
-        //função sql para pesquisar todos os dados do registro e imprimir na textbox
+        //função sql para pesquisar todos os dados do registro e imprimir na textbox mesas disponiveis
         public void researchAvailableTablesPrintData(int idMesa)
         {
             MySqlCommand con = new MySqlCommand();
@@ -219,11 +219,11 @@ namespace projetoAlugaMesa
             Connection.closeConnection();
         }
 
-        //função sql para pesquisar todos os dados do registro e imprimir na textbox
+        //função sql para pesquisar todos os dados do registro e imprimir na textbox mesas alugadas
         public void researchUnavailableTablesPrintData(int idAlug)
         {
             MySqlCommand con = new MySqlCommand();
-            con.CommandText = "select alu.cliente, alu.idMesa, mesa.status from tbAluguel as alu inner join tbMesa as mesa on alu.idMesa = mesa.idMesa where alu.idAlug = @idAlug;";
+            con.CommandText = "select alu.cliente, alu.idMesa, mesa.status, alu.dataAluguel from tbAluguel as alu inner join tbMesa as mesa on alu.idMesa = mesa.idMesa where alu.idAlug = @idAlug;";
             con.CommandType = CommandType.Text;
 
             con.Parameters.Clear();
@@ -238,6 +238,7 @@ namespace projetoAlugaMesa
             txtIdMesa.Text = DR.GetValue(1).ToString();
             txtStatus.Text = DR.GetValue(2).ToString();
             enableFieldsResearchUnavailabe();
+            dtpDataAluguel.Text = DR.GetValue(3).ToString();
 
             Connection.closeConnection();
         }
@@ -301,6 +302,8 @@ namespace projetoAlugaMesa
             {
                 MessageBox.Show("Escolha pelo menos uma opção!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
+
+            
         }
 
         //click botão limpar
@@ -322,23 +325,15 @@ namespace projetoAlugaMesa
             }
             else
             {
-                try
+                if (registerRentedTable(Convert.ToInt32(txtIdMesa.Text)) == 1)
                 {
-                    if (registerRentedTable(Convert.ToInt32(txtIdMesa.Text)) == 1)
-                    {
-                        clearFields();
-                        disableFields();
-                        MessageBox.Show("Mesa alugada com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erro ao alugar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                    }
+                    clearFields();
+                    disableFields();
+                    MessageBox.Show("Mesa alugada com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                 }
-                catch (Exception)
+                else
                 {
-
-                    MessageBox.Show("Erro ao alugar a mesa!\n(Já existe um cliente cadastrado com este nome).", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    MessageBox.Show("Erro ao alugar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
         }
@@ -399,6 +394,36 @@ namespace projetoAlugaMesa
         private void rdbIndisponiveis_CheckedChanged(object sender, EventArgs e)
         {
             lstPesquisar.Items.Clear();
+        }
+
+        //ação click botão fechar conta
+        private void btnFecharConta_Click(object sender, EventArgs e)
+        {
+            frmCalculadoraGorjeta open = new frmCalculadoraGorjeta();
+            DialogResult resp;
+            resp = open.ShowDialog();
+
+            if (resp == DialogResult.Cancel)
+            {
+                this.Hide();
+            }
+        }
+
+        // teste para refazer a lista de items na janela após reabrir
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ListBox.ObjectCollection teste = lstPesquisar.Items;
+            List<string> result = new List<string>();
+
+            for (int i = 0; i < teste.Count; i++)
+            {
+                result.Add(teste[i].ToString());
+            }
+
+            foreach (string linha in result)
+            {
+                lstPesquisar.Items.Add(linha);
+            }
         }
     }
 }
