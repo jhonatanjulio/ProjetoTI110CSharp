@@ -33,6 +33,7 @@ namespace projetoAlugaMesa
             this.btnMesas = new System.Windows.Forms.Button();
             this.btnAlugarMesa = new System.Windows.Forms.Button();
             this.btnCadastrarGarcom = new System.Windows.Forms.Button();
+            this.btnUsuario = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMesas
@@ -77,7 +78,7 @@ namespace projetoAlugaMesa
             this.btnCadastrarGarcom.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastrarGarcom.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarGarcom.Image")));
             this.btnCadastrarGarcom.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCadastrarGarcom.Location = new System.Drawing.Point(265, 286);
+            this.btnCadastrarGarcom.Location = new System.Drawing.Point(126, 286);
             this.btnCadastrarGarcom.Name = "btnCadastrarGarcom";
             this.btnCadastrarGarcom.Size = new System.Drawing.Size(257, 145);
             this.btnCadastrarGarcom.TabIndex = 2;
@@ -86,11 +87,29 @@ namespace projetoAlugaMesa
             this.btnCadastrarGarcom.UseVisualStyleBackColor = false;
             this.btnCadastrarGarcom.Click += new System.EventHandler(this.btnCadastrarGarcom_Click);
             // 
+            // btnUsuario
+            // 
+            this.btnUsuario.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnUsuario.Image")));
+            this.btnUsuario.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnUsuario.Location = new System.Drawing.Point(404, 286);
+            this.btnUsuario.Name = "btnUsuario";
+            this.btnUsuario.Size = new System.Drawing.Size(257, 145);
+            this.btnUsuario.TabIndex = 3;
+            this.btnUsuario.Text = "Cadastrar Usuário";
+            this.btnUsuario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUsuario.UseVisualStyleBackColor = false;
+            this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.btnUsuario);
             this.Controls.Add(this.btnCadastrarGarcom);
             this.Controls.Add(this.btnAlugarMesa);
             this.Controls.Add(this.btnMesas);
@@ -109,6 +128,7 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.Button btnMesas;
         private System.Windows.Forms.Button btnAlugarMesa;
         private System.Windows.Forms.Button btnCadastrarGarcom;
+        private System.Windows.Forms.Button btnUsuario;
     }
 }
 

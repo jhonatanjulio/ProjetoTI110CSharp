@@ -31,6 +31,7 @@ namespace projetoAlugaMesa
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAlugarMesa));
             this.gpbPesquisar = new System.Windows.Forms.GroupBox();
+            this.btnHistorico = new System.Windows.Forms.Button();
             this.lstPesquisar = new System.Windows.Forms.ListBox();
             this.rdbIndisponiveis = new System.Windows.Forms.RadioButton();
             this.rdbDisponiveis = new System.Windows.Forms.RadioButton();
@@ -53,9 +54,8 @@ namespace projetoAlugaMesa
             this.txtGorjeta = new System.Windows.Forms.TextBox();
             this.lblValorTotal = new System.Windows.Forms.Label();
             this.txtValorTotal = new System.Windows.Forms.TextBox();
-            this.btnHistorico = new System.Windows.Forms.Button();
             this.btnFecharConta = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblGarcomResponsavel = new System.Windows.Forms.Label();
             this.gpbPesquisar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +73,21 @@ namespace projetoAlugaMesa
             this.gpbPesquisar.TabIndex = 24;
             this.gpbPesquisar.TabStop = false;
             this.gpbPesquisar.Text = "Pesquisar Mesas:";
+            // 
+            // btnHistorico
+            // 
+            this.btnHistorico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnHistorico.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHistorico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistorico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistorico.Image = ((System.Drawing.Image)(resources.GetObject("btnHistorico.Image")));
+            this.btnHistorico.Location = new System.Drawing.Point(226, 287);
+            this.btnHistorico.Name = "btnHistorico";
+            this.btnHistorico.Size = new System.Drawing.Size(140, 50);
+            this.btnHistorico.TabIndex = 19;
+            this.btnHistorico.Text = "&Histórico de Reservas";
+            this.btnHistorico.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHistorico.UseVisualStyleBackColor = false;
             // 
             // lstPesquisar
             // 
@@ -322,21 +337,6 @@ namespace projetoAlugaMesa
             this.txtValorTotal.TabIndex = 54;
             this.txtValorTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btnHistorico
-            // 
-            this.btnHistorico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnHistorico.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHistorico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistorico.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistorico.Image = ((System.Drawing.Image)(resources.GetObject("btnHistorico.Image")));
-            this.btnHistorico.Location = new System.Drawing.Point(226, 287);
-            this.btnHistorico.Name = "btnHistorico";
-            this.btnHistorico.Size = new System.Drawing.Size(140, 50);
-            this.btnHistorico.TabIndex = 19;
-            this.btnHistorico.Text = "&Histórico de Reservas";
-            this.btnHistorico.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHistorico.UseVisualStyleBackColor = false;
-            // 
             // btnFecharConta
             // 
             this.btnFecharConta.BackColor = System.Drawing.Color.AliceBlue;
@@ -353,22 +353,22 @@ namespace projetoAlugaMesa
             this.btnFecharConta.UseVisualStyleBackColor = false;
             this.btnFecharConta.Click += new System.EventHandler(this.btnFecharConta_Click);
             // 
-            // button1
+            // lblGarcomResponsavel
             // 
-            this.button1.Location = new System.Drawing.Point(255, 307);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 23);
-            this.button1.TabIndex = 57;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.lblGarcomResponsavel.AutoSize = true;
+            this.lblGarcomResponsavel.Location = new System.Drawing.Point(233, 196);
+            this.lblGarcomResponsavel.Name = "lblGarcomResponsavel";
+            this.lblGarcomResponsavel.Size = new System.Drawing.Size(35, 13);
+            this.lblGarcomResponsavel.TabIndex = 57;
+            this.lblGarcomResponsavel.Text = "label1";
+            this.lblGarcomResponsavel.Visible = false;
             // 
             // frmAlugarMesa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lblGarcomResponsavel);
             this.Controls.Add(this.btnFecharConta);
             this.Controls.Add(this.lblValorTotal);
             this.Controls.Add(this.txtValorTotal);
@@ -418,7 +418,6 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.Label lblIdMesa;
         private System.Windows.Forms.TextBox txtIdMesa;
-        private System.Windows.Forms.ListBox lstPesquisar;
         private System.Windows.Forms.DateTimePicker dtpDataAluguel;
         private System.Windows.Forms.Label lblDataEntrada;
         private System.Windows.Forms.Label lblValorConta;
@@ -428,7 +427,8 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.Label lblValorTotal;
         private System.Windows.Forms.TextBox txtValorTotal;
         private System.Windows.Forms.Button btnHistorico;
-        private System.Windows.Forms.Button btnFecharConta;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblGarcomResponsavel;
+        public System.Windows.Forms.ListBox lstPesquisar;
+        public System.Windows.Forms.Button btnFecharConta;
     }
 }
