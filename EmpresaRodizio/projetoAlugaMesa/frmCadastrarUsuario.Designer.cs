@@ -44,6 +44,9 @@ namespace projetoAlugaMesa
             this.btnNovo = new System.Windows.Forms.Button();
             this.lblSenha = new System.Windows.Forms.Label();
             this.txtSenha = new System.Windows.Forms.TextBox();
+            this.lblFuncionario = new System.Windows.Forms.Label();
+            this.cbbFuncionario = new System.Windows.Forms.ComboBox();
+            this.lblIdFunc = new System.Windows.Forms.Label();
             this.gpbPesquisar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +83,7 @@ namespace projetoAlugaMesa
             this.lstPesquisar.Name = "lstPesquisar";
             this.lstPesquisar.Size = new System.Drawing.Size(362, 184);
             this.lstPesquisar.TabIndex = 18;
+            this.lstPesquisar.SelectedIndexChanged += new System.EventHandler(this.lstPesquisar_SelectedIndexChanged);
             // 
             // btnPesquisar
             // 
@@ -95,6 +99,7 @@ namespace projetoAlugaMesa
             this.btnPesquisar.Text = "&Pesquisar";
             this.btnPesquisar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPesquisar.UseVisualStyleBackColor = false;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // lblNome
             // 
@@ -128,6 +133,7 @@ namespace projetoAlugaMesa
             this.btnVoltar.Text = "&Voltar";
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = false;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // btnLimpar
             // 
@@ -143,6 +149,7 @@ namespace projetoAlugaMesa
             this.btnLimpar.Text = "&Limpar";
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimpar.UseVisualStyleBackColor = false;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnExcluir
             // 
@@ -188,6 +195,7 @@ namespace projetoAlugaMesa
             this.btnCadastrar.Text = "&Cadastrar";
             this.btnCadastrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCadastrar.UseVisualStyleBackColor = false;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // btnNovo
             // 
@@ -203,6 +211,7 @@ namespace projetoAlugaMesa
             this.btnNovo.Text = "&Novo";
             this.btnNovo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNovo.UseVisualStyleBackColor = false;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // lblSenha
             // 
@@ -222,11 +231,45 @@ namespace projetoAlugaMesa
             this.txtSenha.Size = new System.Drawing.Size(178, 26);
             this.txtSenha.TabIndex = 9;
             // 
+            // lblFuncionario
+            // 
+            this.lblFuncionario.AutoSize = true;
+            this.lblFuncionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFuncionario.Location = new System.Drawing.Point(69, 198);
+            this.lblFuncionario.Name = "lblFuncionario";
+            this.lblFuncionario.Size = new System.Drawing.Size(96, 20);
+            this.lblFuncionario.TabIndex = 62;
+            this.lblFuncionario.Text = "Funcionário:";
+            // 
+            // cbbFuncionario
+            // 
+            this.cbbFuncionario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbFuncionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cbbFuncionario.FormattingEnabled = true;
+            this.cbbFuncionario.Location = new System.Drawing.Point(73, 221);
+            this.cbbFuncionario.Name = "cbbFuncionario";
+            this.cbbFuncionario.Size = new System.Drawing.Size(178, 28);
+            this.cbbFuncionario.TabIndex = 63;
+            this.cbbFuncionario.TextChanged += new System.EventHandler(this.cbbFuncionario_TextChanged);
+            // 
+            // lblIdFunc
+            // 
+            this.lblIdFunc.AutoSize = true;
+            this.lblIdFunc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdFunc.Location = new System.Drawing.Point(257, 224);
+            this.lblIdFunc.Name = "lblIdFunc";
+            this.lblIdFunc.Size = new System.Drawing.Size(0, 20);
+            this.lblIdFunc.TabIndex = 64;
+            this.lblIdFunc.Visible = false;
+            // 
             // frmCadastrarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.lblIdFunc);
+            this.Controls.Add(this.cbbFuncionario);
+            this.Controls.Add(this.lblFuncionario);
             this.Controls.Add(this.lblSenha);
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.gpbPesquisar);
@@ -264,5 +307,8 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.TextBox txtNomeUser;
+        private System.Windows.Forms.Label lblFuncionario;
+        private System.Windows.Forms.ComboBox cbbFuncionario;
+        private System.Windows.Forms.Label lblIdFunc;
     }
 }

@@ -44,7 +44,7 @@ namespace projetoAlugaMesa
             this.btnMesas.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMesas.Image = ((System.Drawing.Image)(resources.GetObject("btnMesas.Image")));
             this.btnMesas.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMesas.Location = new System.Drawing.Point(126, 41);
+            this.btnMesas.Location = new System.Drawing.Point(125, 34);
             this.btnMesas.Name = "btnMesas";
             this.btnMesas.Size = new System.Drawing.Size(257, 222);
             this.btnMesas.TabIndex = 0;
@@ -61,7 +61,7 @@ namespace projetoAlugaMesa
             this.btnAlugarMesa.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAlugarMesa.Image = ((System.Drawing.Image)(resources.GetObject("btnAlugarMesa.Image")));
             this.btnAlugarMesa.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAlugarMesa.Location = new System.Drawing.Point(404, 41);
+            this.btnAlugarMesa.Location = new System.Drawing.Point(403, 34);
             this.btnAlugarMesa.Name = "btnAlugarMesa";
             this.btnAlugarMesa.Size = new System.Drawing.Size(257, 222);
             this.btnAlugarMesa.TabIndex = 1;
@@ -78,7 +78,7 @@ namespace projetoAlugaMesa
             this.btnCadastrarGarcom.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastrarGarcom.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarGarcom.Image")));
             this.btnCadastrarGarcom.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCadastrarGarcom.Location = new System.Drawing.Point(126, 286);
+            this.btnCadastrarGarcom.Location = new System.Drawing.Point(125, 279);
             this.btnCadastrarGarcom.Name = "btnCadastrarGarcom";
             this.btnCadastrarGarcom.Size = new System.Drawing.Size(257, 145);
             this.btnCadastrarGarcom.TabIndex = 2;
@@ -95,7 +95,7 @@ namespace projetoAlugaMesa
             this.btnUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuario.Image = ((System.Drawing.Image)(resources.GetObject("btnUsuario.Image")));
             this.btnUsuario.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnUsuario.Location = new System.Drawing.Point(404, 286);
+            this.btnUsuario.Location = new System.Drawing.Point(403, 279);
             this.btnUsuario.Name = "btnUsuario";
             this.btnUsuario.Size = new System.Drawing.Size(257, 145);
             this.btnUsuario.TabIndex = 3;
