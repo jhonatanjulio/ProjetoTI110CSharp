@@ -129,7 +129,8 @@ namespace projetoAlugaMesa
             "Excelente - 10%",
             "Ótimo - 8%",
             "Bom - 5%",
-            "Ruim - 2%"});
+            "Ruim - 2%",
+            "Sem gorjeta"});
             this.cbbAvaliacao.Location = new System.Drawing.Point(23, 176);
             this.cbbAvaliacao.Name = "cbbAvaliacao";
             this.cbbAvaliacao.Size = new System.Drawing.Size(431, 26);
@@ -147,7 +148,7 @@ namespace projetoAlugaMesa
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(431, 35);
             this.btnCalcular.TabIndex = 9;
-            this.btnCalcular.Text = "Calcular Gorjeta";
+            this.btnCalcular.Text = "Calcular";
             this.btnCalcular.UseVisualStyleBackColor = false;
             this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
             // 
@@ -182,6 +183,7 @@ namespace projetoAlugaMesa
             this.btnContinuar.TabIndex = 11;
             this.btnContinuar.Text = "Continuar";
             this.btnContinuar.UseVisualStyleBackColor = false;
+            this.btnContinuar.Click += new System.EventHandler(this.btnContinuar_Click);
             // 
             // frmCalculadoraGorjeta
             // 

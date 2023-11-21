@@ -52,8 +52,8 @@ namespace projetoAlugaMesa
             this.lblDataEntrada = new System.Windows.Forms.Label();
             this.dtpDataEntrada = new System.Windows.Forms.DateTimePicker();
             this.gpbStatus = new System.Windows.Forms.GroupBox();
-            this.rdbAtivo = new System.Windows.Forms.RadioButton();
             this.rdbInativo = new System.Windows.Forms.RadioButton();
+            this.rdbAtivo = new System.Windows.Forms.RadioButton();
             this.gpbPesquisar.SuspendLayout();
             this.gpbStatus.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +62,7 @@ namespace projetoAlugaMesa
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(47, 130);
+            this.lblEmail.Location = new System.Drawing.Point(51, 142);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(53, 20);
             this.lblEmail.TabIndex = 40;
@@ -71,11 +71,10 @@ namespace projetoAlugaMesa
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtEmail.Location = new System.Drawing.Point(104, 127);
+            this.txtEmail.Location = new System.Drawing.Point(108, 139);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(213, 26);
             this.txtEmail.TabIndex = 39;
-            this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // gpbPesquisar
             // 
@@ -143,7 +142,7 @@ namespace projetoAlugaMesa
             // 
             this.lblNome.AutoSize = true;
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNome.Location = new System.Drawing.Point(47, 75);
+            this.lblNome.Location = new System.Drawing.Point(51, 87);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(51, 20);
             this.lblNome.TabIndex = 37;
@@ -152,7 +151,7 @@ namespace projetoAlugaMesa
             // txtNome
             // 
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtNome.Location = new System.Drawing.Point(104, 75);
+            this.txtNome.Location = new System.Drawing.Point(108, 87);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(213, 26);
             this.txtNome.TabIndex = 36;
@@ -161,7 +160,7 @@ namespace projetoAlugaMesa
             // 
             this.lblIdGarcom.AutoSize = true;
             this.lblIdGarcom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdGarcom.Location = new System.Drawing.Point(47, 23);
+            this.lblIdGarcom.Location = new System.Drawing.Point(51, 35);
             this.lblIdGarcom.Name = "lblIdGarcom";
             this.lblIdGarcom.Size = new System.Drawing.Size(183, 20);
             this.lblIdGarcom.TabIndex = 35;
@@ -171,7 +170,7 @@ namespace projetoAlugaMesa
             // 
             this.txtIdGarcom.Enabled = false;
             this.txtIdGarcom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtIdGarcom.Location = new System.Drawing.Point(234, 20);
+            this.txtIdGarcom.Location = new System.Drawing.Point(238, 32);
             this.txtIdGarcom.Name = "txtIdGarcom";
             this.txtIdGarcom.Size = new System.Drawing.Size(83, 26);
             this.txtIdGarcom.TabIndex = 34;
@@ -237,6 +236,7 @@ namespace projetoAlugaMesa
             this.btnAlterar.Text = "&Alterar";
             this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAlterar.UseVisualStyleBackColor = false;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnCadastrar
             // 
@@ -274,7 +274,7 @@ namespace projetoAlugaMesa
             // 
             this.lblCPF.AutoSize = true;
             this.lblCPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCPF.Location = new System.Drawing.Point(47, 179);
+            this.lblCPF.Location = new System.Drawing.Point(51, 191);
             this.lblCPF.Name = "lblCPF";
             this.lblCPF.Size = new System.Drawing.Size(40, 20);
             this.lblCPF.TabIndex = 42;
@@ -283,7 +283,7 @@ namespace projetoAlugaMesa
             // mtbCPF
             // 
             this.mtbCPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mtbCPF.Location = new System.Drawing.Point(104, 176);
+            this.mtbCPF.Location = new System.Drawing.Point(108, 188);
             this.mtbCPF.Mask = "999,999,999-99";
             this.mtbCPF.Name = "mtbCPF";
             this.mtbCPF.Size = new System.Drawing.Size(126, 26);
@@ -293,7 +293,7 @@ namespace projetoAlugaMesa
             // 
             this.lblDataEntrada.AutoSize = true;
             this.lblDataEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataEntrada.Location = new System.Drawing.Point(47, 230);
+            this.lblDataEntrada.Location = new System.Drawing.Point(51, 242);
             this.lblDataEntrada.Name = "lblDataEntrada";
             this.lblDataEntrada.Size = new System.Drawing.Size(127, 20);
             this.lblDataEntrada.TabIndex = 44;
@@ -303,7 +303,7 @@ namespace projetoAlugaMesa
             // 
             this.dtpDataEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.dtpDataEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataEntrada.Location = new System.Drawing.Point(180, 225);
+            this.dtpDataEntrada.Location = new System.Drawing.Point(184, 237);
             this.dtpDataEntrada.Name = "dtpDataEntrada";
             this.dtpDataEntrada.Size = new System.Drawing.Size(137, 26);
             this.dtpDataEntrada.TabIndex = 45;
@@ -313,23 +313,12 @@ namespace projetoAlugaMesa
             this.gpbStatus.Controls.Add(this.rdbInativo);
             this.gpbStatus.Controls.Add(this.rdbAtivo);
             this.gpbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.gpbStatus.Location = new System.Drawing.Point(51, 274);
+            this.gpbStatus.Location = new System.Drawing.Point(55, 286);
             this.gpbStatus.Name = "gpbStatus";
             this.gpbStatus.Size = new System.Drawing.Size(179, 76);
             this.gpbStatus.TabIndex = 48;
             this.gpbStatus.TabStop = false;
             this.gpbStatus.Text = "Status";
-            // 
-            // rdbAtivo
-            // 
-            this.rdbAtivo.AutoSize = true;
-            this.rdbAtivo.Location = new System.Drawing.Point(16, 34);
-            this.rdbAtivo.Name = "rdbAtivo";
-            this.rdbAtivo.Size = new System.Drawing.Size(62, 24);
-            this.rdbAtivo.TabIndex = 0;
-            this.rdbAtivo.TabStop = true;
-            this.rdbAtivo.Text = "Ativo";
-            this.rdbAtivo.UseVisualStyleBackColor = true;
             // 
             // rdbInativo
             // 
@@ -341,6 +330,17 @@ namespace projetoAlugaMesa
             this.rdbInativo.TabStop = true;
             this.rdbInativo.Text = "Inativo";
             this.rdbInativo.UseVisualStyleBackColor = true;
+            // 
+            // rdbAtivo
+            // 
+            this.rdbAtivo.AutoSize = true;
+            this.rdbAtivo.Location = new System.Drawing.Point(16, 34);
+            this.rdbAtivo.Name = "rdbAtivo";
+            this.rdbAtivo.Size = new System.Drawing.Size(62, 24);
+            this.rdbAtivo.TabIndex = 0;
+            this.rdbAtivo.TabStop = true;
+            this.rdbAtivo.Text = "Ativo";
+            this.rdbAtivo.UseVisualStyleBackColor = true;
             // 
             // frmCadastrarGarcom
             // 

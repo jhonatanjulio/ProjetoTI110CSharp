@@ -19,6 +19,15 @@ namespace projetoAlugaMesa
             disableFields();
         }
 
+        public frmAlugarMesa(string conta, string gorjeta, string total)
+        {
+            InitializeComponent();
+            disableFields();
+            txtValorConta.Text = conta;
+            txtGorjeta.Text = gorjeta;
+            txtValorTotal.Text = total;
+        }
+
         // desabilitar campos
         public void disableFields()
         {
@@ -34,6 +43,10 @@ namespace projetoAlugaMesa
             dtpDataAluguel.Enabled = false;
             dtpDataAluguel.Format = DateTimePickerFormat.Custom;
             dtpDataAluguel.CustomFormat = " ";
+
+            txtValorConta.Enabled = false;
+            txtGorjeta.Enabled = false;
+            txtValorTotal.Enabled = false;
 
             // habilitando botões padrões
             btnPesquisar.Enabled = true;
@@ -289,6 +302,8 @@ namespace projetoAlugaMesa
             {
                 MessageBox.Show("Escolha pelo menos uma opção!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
+
+            
         }
 
         //click botão limpar
@@ -379,6 +394,36 @@ namespace projetoAlugaMesa
         private void rdbIndisponiveis_CheckedChanged(object sender, EventArgs e)
         {
             lstPesquisar.Items.Clear();
+        }
+
+        //ação click botão fechar conta
+        private void btnFecharConta_Click(object sender, EventArgs e)
+        {
+            frmCalculadoraGorjeta open = new frmCalculadoraGorjeta();
+            DialogResult resp;
+            resp = open.ShowDialog();
+
+            if (resp == DialogResult.Cancel)
+            {
+                this.Hide();
+            }
+        }
+
+        // teste para refazer a lista de items na janela após reabrir
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ListBox.ObjectCollection teste = lstPesquisar.Items;
+            List<string> result = new List<string>();
+
+            for (int i = 0; i < teste.Count; i++)
+            {
+                result.Add(teste[i].ToString());
+            }
+
+            foreach (string linha in result)
+            {
+                lstPesquisar.Items.Add(linha);
+            }
         }
     }
 }

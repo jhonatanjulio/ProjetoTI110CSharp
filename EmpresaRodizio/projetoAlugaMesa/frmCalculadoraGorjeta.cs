@@ -17,6 +17,7 @@ namespace projetoAlugaMesa
             InitializeComponent();
         }
 
+
         //calcular gorjeta
         public void calcularGorjeta(double porc)
         {
@@ -47,6 +48,9 @@ namespace projetoAlugaMesa
                     case "Ruim - 2%":
                         calcularGorjeta(2);
                         break;
+                    case "Sem gorjeta":
+                        calcularGorjeta(0);
+                        break;
                     default:
                         MessageBox.Show("Avalie o serviço antes de calcular a gorjeta!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                         break;
@@ -63,6 +67,13 @@ namespace projetoAlugaMesa
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void btnContinuar_Click(object sender, EventArgs e)
+        {
+            frmAlugarMesa open = new frmAlugarMesa(txtValorConta.Text, txtValorGorjeta.Text, txtValorTotal.Text);
+            open.Show();
+            this.Close();
         }
     }
 }

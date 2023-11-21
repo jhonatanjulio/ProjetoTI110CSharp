@@ -202,7 +202,7 @@ namespace projetoAlugaMesa
             txtQtdeCadeiras.Text = DR.GetValue(1).ToString();
             dtpDataEntrada.Text = DR.GetValue(2).ToString();
 
-            if (DR.GetValue(2).ToString().Equals("DISPONIVEL"))
+            if (DR.GetValue(3).ToString().Equals("DISPONIVEL"))
             {
                 txtStatus.Text = "DISPONIVEL";
                 enableFieldsResearchAvailable();
