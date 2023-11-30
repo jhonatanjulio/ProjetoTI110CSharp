@@ -111,6 +111,7 @@ namespace projetoAlugaMesa
             //retornando o valor da flag original para a função clearFieldsValues retornar sua função normal
             open.flagClearFields = false;
             open.btnFecharConta.Enabled = false;
+            open.btnLiberar.Enabled = true;
 
             open.Show();
 

@@ -48,7 +48,7 @@ namespace projetoAlugaMesa
             this.btnMesas.Name = "btnMesas";
             this.btnMesas.Size = new System.Drawing.Size(257, 222);
             this.btnMesas.TabIndex = 0;
-            this.btnMesas.Text = "Cadastrar Mesas";
+            this.btnMesas.Text = "Gerenciar Mesas";
             this.btnMesas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMesas.UseVisualStyleBackColor = false;
             this.btnMesas.Click += new System.EventHandler(this.btnMesas_Click);
@@ -82,7 +82,7 @@ namespace projetoAlugaMesa
             this.btnCadastrarGarcom.Name = "btnCadastrarGarcom";
             this.btnCadastrarGarcom.Size = new System.Drawing.Size(257, 145);
             this.btnCadastrarGarcom.TabIndex = 2;
-            this.btnCadastrarGarcom.Text = "Cadastrar Garçom";
+            this.btnCadastrarGarcom.Text = "Gerenciar Garçons";
             this.btnCadastrarGarcom.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCadastrarGarcom.UseVisualStyleBackColor = false;
             this.btnCadastrarGarcom.Click += new System.EventHandler(this.btnCadastrarGarcom_Click);
@@ -99,7 +99,7 @@ namespace projetoAlugaMesa
             this.btnUsuario.Name = "btnUsuario";
             this.btnUsuario.Size = new System.Drawing.Size(257, 145);
             this.btnUsuario.TabIndex = 3;
-            this.btnUsuario.Text = "Cadastrar Usuário";
+            this.btnUsuario.Text = "Gerenciar Usuários";
             this.btnUsuario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnUsuario.UseVisualStyleBackColor = false;
             this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);

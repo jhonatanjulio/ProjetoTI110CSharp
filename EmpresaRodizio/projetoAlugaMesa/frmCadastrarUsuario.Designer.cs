@@ -56,7 +56,7 @@ namespace projetoAlugaMesa
             this.gpbPesquisar.Controls.Add(this.lstPesquisar);
             this.gpbPesquisar.Controls.Add(this.btnPesquisar);
             this.gpbPesquisar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpbPesquisar.Location = new System.Drawing.Point(370, 25);
+            this.gpbPesquisar.Location = new System.Drawing.Point(368, 25);
             this.gpbPesquisar.Name = "gpbPesquisar";
             this.gpbPesquisar.Size = new System.Drawing.Size(374, 350);
             this.gpbPesquisar.TabIndex = 59;
@@ -77,6 +77,7 @@ namespace projetoAlugaMesa
             // 
             // lstPesquisar
             // 
+            this.lstPesquisar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lstPesquisar.FormattingEnabled = true;
             this.lstPesquisar.ItemHeight = 20;
             this.lstPesquisar.Location = new System.Drawing.Point(6, 81);
@@ -105,7 +106,7 @@ namespace projetoAlugaMesa
             // 
             this.lblNome.AutoSize = true;
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNome.Location = new System.Drawing.Point(69, 43);
+            this.lblNome.Location = new System.Drawing.Point(47, 43);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(136, 20);
             this.lblNome.TabIndex = 58;
@@ -114,9 +115,9 @@ namespace projetoAlugaMesa
             // txtNome
             // 
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtNome.Location = new System.Drawing.Point(73, 66);
+            this.txtNome.Location = new System.Drawing.Point(51, 66);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(178, 26);
+            this.txtNome.Size = new System.Drawing.Size(168, 26);
             this.txtNome.TabIndex = 8;
             // 
             // btnVoltar
@@ -165,6 +166,7 @@ namespace projetoAlugaMesa
             this.btnExcluir.Text = "&Excluir";
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnAlterar
             // 
@@ -180,6 +182,7 @@ namespace projetoAlugaMesa
             this.btnAlterar.Text = "&Alterar";
             this.btnAlterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAlterar.UseVisualStyleBackColor = false;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnCadastrar
             // 
@@ -217,7 +220,7 @@ namespace projetoAlugaMesa
             // 
             this.lblSenha.AutoSize = true;
             this.lblSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSenha.Location = new System.Drawing.Point(69, 120);
+            this.lblSenha.Location = new System.Drawing.Point(47, 120);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(60, 20);
             this.lblSenha.TabIndex = 61;
@@ -226,16 +229,16 @@ namespace projetoAlugaMesa
             // txtSenha
             // 
             this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtSenha.Location = new System.Drawing.Point(73, 143);
+            this.txtSenha.Location = new System.Drawing.Point(51, 143);
             this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Size = new System.Drawing.Size(178, 26);
+            this.txtSenha.Size = new System.Drawing.Size(168, 26);
             this.txtSenha.TabIndex = 9;
             // 
             // lblFuncionario
             // 
             this.lblFuncionario.AutoSize = true;
             this.lblFuncionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFuncionario.Location = new System.Drawing.Point(69, 198);
+            this.lblFuncionario.Location = new System.Drawing.Point(47, 198);
             this.lblFuncionario.Name = "lblFuncionario";
             this.lblFuncionario.Size = new System.Drawing.Size(96, 20);
             this.lblFuncionario.TabIndex = 62;
@@ -246,9 +249,9 @@ namespace projetoAlugaMesa
             this.cbbFuncionario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbFuncionario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cbbFuncionario.FormattingEnabled = true;
-            this.cbbFuncionario.Location = new System.Drawing.Point(73, 221);
+            this.cbbFuncionario.Location = new System.Drawing.Point(51, 221);
             this.cbbFuncionario.Name = "cbbFuncionario";
-            this.cbbFuncionario.Size = new System.Drawing.Size(178, 28);
+            this.cbbFuncionario.Size = new System.Drawing.Size(282, 28);
             this.cbbFuncionario.TabIndex = 63;
             this.cbbFuncionario.TextChanged += new System.EventHandler(this.cbbFuncionario_TextChanged);
             // 
@@ -256,7 +259,7 @@ namespace projetoAlugaMesa
             // 
             this.lblIdFunc.AutoSize = true;
             this.lblIdFunc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdFunc.Location = new System.Drawing.Point(257, 224);
+            this.lblIdFunc.Location = new System.Drawing.Point(255, 224);
             this.lblIdFunc.Name = "lblIdFunc";
             this.lblIdFunc.Size = new System.Drawing.Size(0, 20);
             this.lblIdFunc.TabIndex = 64;

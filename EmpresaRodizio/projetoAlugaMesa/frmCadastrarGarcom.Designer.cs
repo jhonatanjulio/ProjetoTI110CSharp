@@ -92,6 +92,7 @@ namespace projetoAlugaMesa
             // 
             // lstPesquisar
             // 
+            this.lstPesquisar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lstPesquisar.FormattingEnabled = true;
             this.lstPesquisar.ItemHeight = 20;
             this.lstPesquisar.Location = new System.Drawing.Point(6, 81);
@@ -103,6 +104,7 @@ namespace projetoAlugaMesa
             // rdbInativos
             // 
             this.rdbInativos.AutoSize = true;
+            this.rdbInativos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdbInativos.Location = new System.Drawing.Point(223, 41);
             this.rdbInativos.Name = "rdbInativos";
             this.rdbInativos.Size = new System.Drawing.Size(82, 24);
@@ -114,6 +116,7 @@ namespace projetoAlugaMesa
             // rdbAtivos
             // 
             this.rdbAtivos.AutoSize = true;
+            this.rdbAtivos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdbAtivos.Location = new System.Drawing.Point(71, 41);
             this.rdbAtivos.Name = "rdbAtivos";
             this.rdbAtivos.Size = new System.Drawing.Size(70, 24);
@@ -182,7 +185,7 @@ namespace projetoAlugaMesa
             this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoltar.Image = ((System.Drawing.Image)(resources.GetObject("btnVoltar.Image")));
-            this.btnVoltar.Location = new System.Drawing.Point(609, 388);
+            this.btnVoltar.Location = new System.Drawing.Point(633, 388);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(91, 50);
             this.btnVoltar.TabIndex = 33;
@@ -198,7 +201,7 @@ namespace projetoAlugaMesa
             this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpar.Image")));
-            this.btnLimpar.Location = new System.Drawing.Point(503, 388);
+            this.btnLimpar.Location = new System.Drawing.Point(527, 388);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(100, 50);
             this.btnLimpar.TabIndex = 32;
@@ -214,13 +217,14 @@ namespace projetoAlugaMesa
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcluir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluir.Image")));
-            this.btnExcluir.Location = new System.Drawing.Point(400, 388);
+            this.btnExcluir.Location = new System.Drawing.Point(396, 388);
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(100, 50);
+            this.btnExcluir.Size = new System.Drawing.Size(125, 50);
             this.btnExcluir.TabIndex = 31;
-            this.btnExcluir.Text = "&Excluir";
+            this.btnExcluir.Text = "&Desativar";
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluir.UseVisualStyleBackColor = false;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnAlterar
             // 
@@ -229,7 +233,7 @@ namespace projetoAlugaMesa
             this.btnAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAlterar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
-            this.btnAlterar.Location = new System.Drawing.Point(294, 388);
+            this.btnAlterar.Location = new System.Drawing.Point(290, 388);
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(100, 50);
             this.btnAlterar.TabIndex = 30;
@@ -245,7 +249,7 @@ namespace projetoAlugaMesa
             this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastrar.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrar.Image")));
-            this.btnCadastrar.Location = new System.Drawing.Point(162, 388);
+            this.btnCadastrar.Location = new System.Drawing.Point(158, 388);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(126, 50);
             this.btnCadastrar.TabIndex = 29;
@@ -261,7 +265,7 @@ namespace projetoAlugaMesa
             this.btnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
-            this.btnNovo.Location = new System.Drawing.Point(67, 388);
+            this.btnNovo.Location = new System.Drawing.Point(63, 388);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(89, 50);
             this.btnNovo.TabIndex = 28;

@@ -20,6 +20,7 @@ namespace projetoAlugaMesa
         {
             InitializeComponent();
             disableFields();
+            lblGarcomResponsavel.Text = Convert.ToString(frmAutenticacao.idLoggedEmployee);
         }
 
         public frmAlugarMesa(string conta, string gorjeta, string total)
@@ -66,6 +67,7 @@ namespace projetoAlugaMesa
             // habilitando botões
             btnAlugar.Enabled = true;
             btnLimpar.Enabled = true;
+            btnFecharConta.Enabled = false;
 
             // habilitando campos
             txtCliente.Enabled = true;
@@ -110,6 +112,10 @@ namespace projetoAlugaMesa
             txtStatus.Clear();
 
             txtCliente.Focus();
+
+            txtValorConta.Clear();
+            txtGorjeta.Clear();
+            txtValorTotal.Clear();
 
             lstPesquisar.Items.Clear();
         }
@@ -171,13 +177,14 @@ namespace projetoAlugaMesa
         public int registerRentedTable(int idMesa)
         {
             MySqlCommand con = new MySqlCommand();
-            con.CommandText = "insert into tbAluguel(cliente, dataAluguel, idMesa) values (@cliente, @dataAluguel, @idMesa);";
+            con.CommandText = "insert into tbAluguel(cliente, dataAluguel, idMesa, idGarcom) values (@cliente, @dataAluguel, @idMesa, @idGarcom);";
             con.CommandType = CommandType.Text;
 
             con.Parameters.Clear();
             con.Parameters.Add("@cliente", MySqlDbType.VarChar, 20).Value = txtCliente.Text;
             con.Parameters.Add("@dataAluguel", MySqlDbType.Date).Value = Convert.ToDateTime(dtpDataAluguel.Text);
             con.Parameters.Add("@idMesa", MySqlDbType.Int32).Value = idMesa;
+            con.Parameters.Add("@idGarcom", MySqlDbType.Int32).Value = Convert.ToInt32(lblGarcomResponsavel.Text);
 
             con.Connection = Connection.getConnection();
 
@@ -263,11 +270,14 @@ namespace projetoAlugaMesa
         public int toFreeRentedTables(int idMesa, int idAlug)
         {
             MySqlCommand con = new MySqlCommand();
-            con.CommandText = "update tbAluguel set status = 'CONCLUIDO' where idAlug = @id;";
+            con.CommandText = "update tbAluguel set status = 'CONCLUIDO', valorConta = @valorConta, gorjeta = @gorjeta, total = @total where idAlug = @id;";
             con.CommandType = CommandType.Text;
 
             con.Parameters.Clear();
             con.Parameters.Add("@id", MySqlDbType.Int32).Value = idAlug;
+            con.Parameters.Add("@valorConta", MySqlDbType.Int32).Value = Convert.ToDouble(txtValorConta.Text);
+            con.Parameters.Add("@gorjeta", MySqlDbType.Int32).Value = Convert.ToDouble(txtGorjeta.Text);
+            con.Parameters.Add("@total", MySqlDbType.Int32).Value = Convert.ToDouble(txtValorTotal.Text);
 
             con.Connection = Connection.getConnection();
             int resp = con.ExecuteNonQuery();
@@ -385,6 +395,7 @@ namespace projetoAlugaMesa
                 {
                     clearValueFields();
                     btnFecharConta.Enabled = true;
+                    btnLiberar.Enabled = false;
                 }
                 if (rdbDisponiveis.Checked == true)
                 {
@@ -401,6 +412,7 @@ namespace projetoAlugaMesa
                     string[] cod = lstPesquisar.SelectedItem.ToString().Split(between, StringSplitOptions.None);
                     int rentedTable = Convert.ToInt32(cod[cod.Length - 1]);
                     researchUnavailableTablesPrintData(rentedTable);
+                    btnLiberar.Enabled = false;
                 }
             }
         }
@@ -439,6 +451,14 @@ namespace projetoAlugaMesa
             {
                 this.Hide();
             }
+        }
+
+        //ação click botão histórico de reservas
+        private void btnHistorico_Click(object sender, EventArgs e)
+        {
+            frmHistoricoReservas open = new frmHistoricoReservas();
+            open.Show();
+            this.Hide();
         }
     }
 }

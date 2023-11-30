@@ -200,6 +200,7 @@ namespace projetoAlugaMesa
             // 
             // lstPesquisar
             // 
+            this.lstPesquisar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lstPesquisar.FormattingEnabled = true;
             this.lstPesquisar.ItemHeight = 20;
             this.lstPesquisar.Location = new System.Drawing.Point(57, 80);
@@ -211,6 +212,7 @@ namespace projetoAlugaMesa
             // rdbIndisponiveis
             // 
             this.rdbIndisponiveis.AutoSize = true;
+            this.rdbIndisponiveis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdbIndisponiveis.Location = new System.Drawing.Point(209, 40);
             this.rdbIndisponiveis.Name = "rdbIndisponiveis";
             this.rdbIndisponiveis.Size = new System.Drawing.Size(118, 24);
@@ -223,6 +225,7 @@ namespace projetoAlugaMesa
             // rdbDisponiveis
             // 
             this.rdbDisponiveis.AutoSize = true;
+            this.rdbDisponiveis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rdbDisponiveis.Location = new System.Drawing.Point(57, 40);
             this.rdbDisponiveis.Name = "rdbDisponiveis";
             this.rdbDisponiveis.Size = new System.Drawing.Size(107, 24);

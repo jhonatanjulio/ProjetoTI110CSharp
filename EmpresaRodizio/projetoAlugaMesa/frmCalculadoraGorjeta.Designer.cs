@@ -122,6 +122,7 @@ namespace projetoAlugaMesa
             // 
             // cbbAvaliacao
             // 
+            this.cbbAvaliacao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbbAvaliacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbAvaliacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cbbAvaliacao.FormattingEnabled = true;

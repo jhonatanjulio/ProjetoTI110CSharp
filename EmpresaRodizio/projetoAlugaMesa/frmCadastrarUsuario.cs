@@ -93,11 +93,11 @@ namespace projetoAlugaMesa
             txtNome.Focus();
         }
 
-        // pesquisar todos os funcionários que não possuem usuários
+        // pesquisar todos os funcionários que não possuem usuários e que estejam ativos
         public void researchAllEmployees()
         {
             MySqlCommand con = new MySqlCommand();
-            con.CommandText = "select func.nome from tbGarcom as func left join tbUsuario as usu on usu.idGarcom = func.idGarcom where usu.idGarcom is null;";
+            con.CommandText = "select func.nome from tbGarcom as func left join tbUsuario as usu on usu.idGarcom = func.idGarcom where usu.idGarcom is null AND func.status = 'ATIVO';";
             con.CommandType = CommandType.Text;
 
             con.Connection = Connection.getConnection();
@@ -116,7 +116,8 @@ namespace projetoAlugaMesa
             else
             {
                 cbbFuncionario.Items.Clear();
-                cbbFuncionario.Text = "Não existem funcionários disponíveis";
+                cbbFuncionario.Items.Add("Não existem funcionários disponíveis");
+                cbbFuncionario.SelectedIndex = 0;
             }
             
 
@@ -213,6 +214,44 @@ namespace projetoAlugaMesa
             return resp;
         }
 
+        // alterar usuários
+        public int changeUser()
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "update tbUsuario set usuario = @usuario, senha = @senha where idGarcom = @idGarcom;";
+            con.CommandType = CommandType.Text;
+
+            con.Parameters.Add("@usuario", MySqlDbType.VarChar, 20).Value = txtNome.Text;
+            con.Parameters.Add("@senha", MySqlDbType.VarChar, 20).Value = txtSenha.Text;
+            con.Parameters.Add("@idGarcom", MySqlDbType.Int32).Value = Convert.ToInt32(lblIdFunc.Text);
+
+            con.Connection = Connection.getConnection();
+
+            int resp = con.ExecuteNonQuery();
+
+            Connection.closeConnection();
+
+            return resp;
+        }
+
+        // excluir usuários
+        public int deleteUser()
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "delete from tbUsuario where usuario = @usuario;";
+            con.CommandType = CommandType.Text;
+
+            con.Parameters.Add("@usuario", MySqlDbType.VarChar, 20).Value = txtNome.Text;
+
+            con.Connection = Connection.getConnection();
+
+            int resp = con.ExecuteNonQuery();
+
+            Connection.closeConnection();
+
+            return resp;
+        }
+
         // placeholder manual
         private void txtNomeUser_Enter(object sender, EventArgs e)
         {
@@ -277,15 +316,30 @@ namespace projetoAlugaMesa
         {
             if (!(txtNome.Text.Equals("") || txtSenha.Text.Equals("") || cbbFuncionario.Text.Equals("")))
             {
-                if (registerUser() == 1)
+                try
                 {
-                    clearFields();
-                    disableFields();
-                    MessageBox.Show("Usuário cadastrado com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    if (registerUser() == 1)
+                    {
+                        clearFields();
+                        disableFields();
+                        MessageBox.Show("Usuário cadastrado com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao cadastrar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    }
                 }
-                else
+                catch (FormatException)
                 {
-                    MessageBox.Show("Erro ao cadastrar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    DialogResult resp;
+                    resp = MessageBox.Show("Não existem funcionários disponíveis!\nDeseja cadastrar um novo funcionário?", "Mensagem do Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
+
+                    if (resp == DialogResult.Yes)
+                    {
+                        frmCadastrarGarcom open = new frmCadastrarGarcom();
+                        open.Show();
+                        this.Hide();
+                    }
                 }
             }
             else
@@ -326,6 +380,47 @@ namespace projetoAlugaMesa
             {
                 enableFieldsResearch();
                 researchUsersPrintData(lstPesquisar.SelectedItem.ToString());
+            }
+        }
+
+        //ação click botão alterar
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            if (!(txtNome.Text.Equals("") || txtSenha.Text.Equals("") || cbbFuncionario.Text.Equals("")))
+            {
+                if (changeUser() == 1)
+                {
+                    clearFields();
+                    disableFields();
+                    MessageBox.Show("Usuário alterado com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao alterar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Preencha todos os campos!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        //ação click botão excluir
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            DialogResult resp = MessageBox.Show("Você realmente deseja excluir este usuário?", "Mensagem do Sistema", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
+            if (resp == DialogResult.Yes)
+            {
+                if (deleteUser() == 1)
+                {
+                    MessageBox.Show("Usuário exclúida com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    clearFields();
+                    disableFields();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao excluir!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
             }
         }
     }

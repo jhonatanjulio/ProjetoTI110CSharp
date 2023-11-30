@@ -144,9 +144,7 @@ namespace projetoAlugaMesa
             btnAlterar.Focus();
         }
 
-
-
-        //função sql cadastrar funcinários
+        //função sql cadastrar funcionários
         public int registerEmployee()
         {
             MySqlCommand con = new MySqlCommand();
@@ -265,6 +263,24 @@ namespace projetoAlugaMesa
             con.Parameters.Add("@dataEntrada", MySqlDbType.Date).Value = Convert.ToDateTime(dtpDataEntrada.Text);
             con.Parameters.Add("@status", MySqlDbType.VarChar, 15).Value = status;
             con.Parameters.Add("@idGarcom", MySqlDbType.Int32).Value = idGarcom;
+
+            con.Connection = Connection.getConnection();
+            int resp = con.ExecuteNonQuery();
+
+            Connection.closeConnection();
+
+            return resp;
+        }
+
+        //função sql desativar funcionario
+        public int disableEmployee()
+        {
+            MySqlCommand con = new MySqlCommand();
+            con.CommandText = "update tbGarcom set status = 'INATIVO' where idGarcom = @idGarcom";
+            con.CommandType = CommandType.Text;
+
+            con.Parameters.Clear();
+            con.Parameters.Add("@idGarcom", MySqlDbType.Int32).Value = Convert.ToInt32(txtIdGarcom.Text);
 
             con.Connection = Connection.getConnection();
             int resp = con.ExecuteNonQuery();
@@ -428,6 +444,26 @@ namespace projetoAlugaMesa
                 }
 
             }
+        }
+
+        //ação click botão desativar
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            DialogResult resp = MessageBox.Show("Você está desativando um funcionário!\nDeseja realmente continuar?", "Mensagem do Sistema", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
+            if (resp == DialogResult.Yes)
+            {
+                if (disableEmployee() == 1)
+                {
+                    MessageBox.Show("Funcionário desativado com sucesso!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    clearFields();
+                    disableFields();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao desativar!", "Mensagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+            }
+            
         }
     }
 }

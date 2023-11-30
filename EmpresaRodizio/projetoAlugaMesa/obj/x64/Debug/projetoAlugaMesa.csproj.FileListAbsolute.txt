@@ -74,3 +74,4 @@ C:\Users\Pichau\Documents\Visual Studio 2019\ProjetoTI110CSharp\EmpresaRodizio\p
 C:\Users\Pichau\Documents\Visual Studio 2019\ProjetoTI110CSharp\EmpresaRodizio\projetoAlugaMesa\obj\x64\Debug\projetoAlugaMesa.frmCalculadoraGorjeta.resources
 C:\Users\Pichau\Documents\Visual Studio 2019\ProjetoTI110CSharp\EmpresaRodizio\projetoAlugaMesa\obj\x64\Debug\projetoAlugaMesa.frmAutenticacao.resources
 C:\Users\Pichau\Documents\Visual Studio 2019\ProjetoTI110CSharp\EmpresaRodizio\projetoAlugaMesa\obj\x64\Debug\projetoAlugaMesa.frmCadastrarUsuario.resources
+C:\Users\Pichau\Documents\Visual Studio 2019\ProjetoTI110CSharp\EmpresaRodizio\projetoAlugaMesa\obj\x64\Debug\projetoAlugaMesa.frmHistoricoReservas.resources

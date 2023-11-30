@@ -88,9 +88,11 @@ namespace projetoAlugaMesa
             this.btnHistorico.Text = "&Histórico de Reservas";
             this.btnHistorico.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHistorico.UseVisualStyleBackColor = false;
+            this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
             // 
             // lstPesquisar
             // 
+            this.lstPesquisar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lstPesquisar.FormattingEnabled = true;
             this.lstPesquisar.ItemHeight = 20;
             this.lstPesquisar.Location = new System.Drawing.Point(6, 80);
@@ -413,7 +415,6 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Button btnLimpar;
-        private System.Windows.Forms.Button btnLiberar;
         private System.Windows.Forms.Button btnAlugar;
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.Label lblIdMesa;
@@ -430,5 +431,6 @@ namespace projetoAlugaMesa
         private System.Windows.Forms.Label lblGarcomResponsavel;
         public System.Windows.Forms.ListBox lstPesquisar;
         public System.Windows.Forms.Button btnFecharConta;
+        public System.Windows.Forms.Button btnLiberar;
     }
 }

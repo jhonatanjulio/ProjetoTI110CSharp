@@ -141,6 +141,12 @@
     <Compile Include="frmCalculadoraGorjeta.Designer.cs">
       <DependentUpon>frmCalculadoraGorjeta.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmHistoricoReservas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHistoricoReservas.Designer.cs">
+      <DependentUpon>frmHistoricoReservas.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCalculadoraGorjeta.resx">
       <DependentUpon>frmCalculadoraGorjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHistoricoReservas.resx">
+      <DependentUpon>frmHistoricoReservas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuPrincipal.resx">
       <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
