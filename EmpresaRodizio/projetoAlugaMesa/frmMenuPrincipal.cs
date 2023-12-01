@@ -17,7 +17,7 @@ namespace projetoAlugaMesa
             InitializeComponent();
         }
 
-        // acessa a janela de cadastro de mesas
+        // acessa a janela de crud mesas
         private void btnMesas_Click(object sender, EventArgs e)
         {
             frmCadastrarMesas open = new frmCadastrarMesas();
@@ -33,9 +33,18 @@ namespace projetoAlugaMesa
             this.Hide();
         }
 
+        // acessa a janela de crud garçom
         private void btnCadastrarGarcom_Click(object sender, EventArgs e)
         {
             frmCadastrarGarcom open = new frmCadastrarGarcom();
+            open.Show();
+            this.Hide();
+        }
+
+        //acessa a janela de crud usuario
+        private void btnUsuario_Click(object sender, EventArgs e)
+        {
+            frmCadastrarUsuario open = new frmCadastrarUsuario();
             open.Show();
             this.Hide();
         }

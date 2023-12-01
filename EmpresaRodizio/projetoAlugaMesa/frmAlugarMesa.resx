@@ -118,6 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnHistorico.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EwAACxMBAJqcGAAAAW5JREFUSEvF1b0rRXEcx/GDQmFUFjFI2CmDQcyKTAYD5aFY5A/w/BAbyuA/kFIs
+        FmVhM9kkiwxKynOe359vnTqdHOf3c+/lU6/h+7u/p/s7v3Nv8N+pRB8mMI1h1CHjNGAXH/j8xhFa8Kt0
+        4wGa6BJrGMEAlnAKffaGcXilHa94xySKEU8BBvEELaSFnVIC7dh1ULiZZ1SpIS1j0ORbVrllARqzblVK
+        DqHOzVa5pRx6FlfQ0SUmDzrTO+SrwSPH0MaqrUpIGdTpzCq/6DprbJNVCdGu9cCurfJLeLSpL+AJ1LHe
+        Krfo5j3iHoVq+Cmz0AIrVrllFBqzaVVKKqCH/IJWNaSkFjfQS9moBpcMQTu6RacaEqKrfAH1PVCDT6YQ
+        /sjtox+aULvsgV7E+I/gHLzShXNEJ4nSbduOtc3DK0XowCp2sIcN9KIUyiIyWsQlM4gusoys508WiR6X
+        /rBqkPXom2jyNqtylJzsPCFB8AWoT21pnqyQKQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="btnPesquisar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
@@ -174,18 +186,6 @@
         /H7uM8foRKEVeIOPGIVahDdjnaILRd3CDmr5CNQC7HXPGbpR0hLiwfjO5xFfS6OXohdu1ViHBp+Qg5qD
         XeS5Rj8+LHw4M/mjJJmFt8y6gb6bL6VPvwl6PN4y6w6D+HZT8BbG7jGEH9WCA3iL5QHDKKtWHMIu10sQ
         3rCya8cRwvJnjCHTOrAH/XllvvzPlyRvuwm12HzE1QUAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="btnHistorico.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EwAACxMBAJqcGAAAAW5JREFUSEvF1b0rRXEcx/GDQmFUFjFI2CmDQcyKTAYD5aFY5A/w/BAbyuA/kFIs
-        FmVhM9kkiwxKynOe359vnTqdHOf3c+/lU6/h+7u/p/s7v3Nv8N+pRB8mMI1h1CHjNGAXH/j8xhFa8Kt0
-        4wGa6BJrGMEAlnAKffaGcXilHa94xySKEU8BBvEELaSFnVIC7dh1ULiZZ1SpIS1j0ORbVrllARqzblVK
-        DqHOzVa5pRx6FlfQ0SUmDzrTO+SrwSPH0MaqrUpIGdTpzCq/6DprbJNVCdGu9cCurfJLeLSpL+AJ1LHe
-        Krfo5j3iHoVq+Cmz0AIrVrllFBqzaVVKKqCH/IJWNaSkFjfQS9moBpcMQTu6RacaEqKrfAH1PVCDT6YQ
-        /sjtox+aULvsgV7E+I/gHLzShXNEJ4nSbduOtc3DK0XowCp2sIcN9KIUyiIyWsQlM4gusoys508WiR6X
-        /rBqkPXom2jyNqtylJzsPCFB8AWoT21pnqyQKQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="btnFecharConta.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

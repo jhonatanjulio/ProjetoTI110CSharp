@@ -13,6 +13,9 @@ namespace projetoAlugaMesa
 {
     public partial class frmAlugarMesa : Form
     {
+
+        public bool flagClearFields = false;
+
         public frmAlugarMesa()
         {
             InitializeComponent();
@@ -26,6 +29,7 @@ namespace projetoAlugaMesa
             txtValorConta.Text = conta;
             txtGorjeta.Text = gorjeta;
             txtValorTotal.Text = total;
+            flagClearFields = true;
         }
 
         // desabilitar campos
@@ -35,6 +39,7 @@ namespace projetoAlugaMesa
             btnAlugar.Enabled = false;
             btnLiberar.Enabled = false;
             btnLimpar.Enabled = false;
+            btnFecharConta.Enabled = false;
 
             // desabilitando campos
             txtCliente.Enabled = false;
@@ -82,6 +87,8 @@ namespace projetoAlugaMesa
             // habilitando botões
             btnLiberar.Enabled = true;
             btnLimpar.Enabled = true;
+            btnFecharConta.Enabled = true;
+
 
             // habilitando campos
             txtCliente.Enabled = false;
@@ -105,6 +112,14 @@ namespace projetoAlugaMesa
             txtCliente.Focus();
 
             lstPesquisar.Items.Clear();
+        }
+
+        //limpar campos de valores 
+        public void clearValueFields()
+        {
+            txtValorConta.Clear();
+            txtGorjeta.Clear();
+            txtValorTotal.Clear();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -239,6 +254,7 @@ namespace projetoAlugaMesa
             txtStatus.Text = DR.GetValue(2).ToString();
             enableFieldsResearchUnavailabe();
             dtpDataAluguel.Text = DR.GetValue(3).ToString();
+            rdbIndisponiveis.Checked = true;
 
             Connection.closeConnection();
         }
@@ -365,6 +381,11 @@ namespace projetoAlugaMesa
             }
             else
             {
+                if (!flagClearFields)
+                {
+                    clearValueFields();
+                    btnFecharConta.Enabled = true;
+                }
                 if (rdbDisponiveis.Checked == true)
                 {
                     //extraindo apenas o código da mesa a partir da listbox com split
@@ -375,7 +396,7 @@ namespace projetoAlugaMesa
                 }
                 if (rdbIndisponiveis.Checked == true)
                 {
-                    //extraindo apenas o código da mesa a partir da listbox com split
+                    //extraindo apenas o código da reserva a partir da listbox com split
                     char[] between = { ' ' };
                     string[] cod = lstPesquisar.SelectedItem.ToString().Split(between, StringSplitOptions.None);
                     int rentedTable = Convert.ToInt32(cod[cod.Length - 1]);
@@ -399,30 +420,24 @@ namespace projetoAlugaMesa
         //ação click botão fechar conta
         private void btnFecharConta_Click(object sender, EventArgs e)
         {
-            frmCalculadoraGorjeta open = new frmCalculadoraGorjeta();
+            int selectedIndex = lstPesquisar.SelectedIndex;
+
+            //envia a lista atual para a outra janela
+            ListBox.ObjectCollection lstbox = lstPesquisar.Items;
+            List<string> result = new List<string>();
+
+            for (int i = 0; i < lstbox.Count; i++)
+            {
+                result.Add(lstbox[i].ToString());
+            }
+
+            frmCalculadoraGorjeta open = new frmCalculadoraGorjeta(selectedIndex, result);
             DialogResult resp;
             resp = open.ShowDialog();
 
             if (resp == DialogResult.Cancel)
             {
                 this.Hide();
-            }
-        }
-
-        // teste para refazer a lista de items na janela após reabrir
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ListBox.ObjectCollection teste = lstPesquisar.Items;
-            List<string> result = new List<string>();
-
-            for (int i = 0; i < teste.Count; i++)
-            {
-                result.Add(teste[i].ToString());
-            }
-
-            foreach (string linha in result)
-            {
-                lstPesquisar.Items.Add(linha);
             }
         }
     }

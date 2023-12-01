@@ -12,9 +12,19 @@ namespace projetoAlugaMesa
 {
     public partial class frmCalculadoraGorjeta : Form
     {
+        private int index = 0;
+        private List<string> resultado = new List<string>();
+
         public frmCalculadoraGorjeta()
         {
             InitializeComponent();
+        }
+
+        public frmCalculadoraGorjeta(int selectedIndex, List<string> result)
+        {
+            InitializeComponent();
+            index = selectedIndex;
+            resultado = result;
         }
 
 
@@ -72,7 +82,38 @@ namespace projetoAlugaMesa
         private void btnContinuar_Click(object sender, EventArgs e)
         {
             frmAlugarMesa open = new frmAlugarMesa(txtValorConta.Text, txtValorGorjeta.Text, txtValorTotal.Text);
+            
+            //repreenche a lista de pesquisa
+            foreach (string linha in resultado)
+            {
+                open.lstPesquisar.Items.Add(linha);
+            }
+
+            //reselecionando o item que estava selecionado anteriormente
+            open.lstPesquisar.SelectedIndex = index;
+
+            //extraindo apenas o código da reserva a partir da listbox com split
+            char[] between = { ' ' };
+            string[] cod = open.lstPesquisar.SelectedItem.ToString().Split(between, StringSplitOptions.None);
+            int rentedTable = Convert.ToInt32(cod[cod.Length - 1]);
+
+            open.researchUnavailableTablesPrintData(rentedTable);
+
+            //repreenche a lista de pesquisa (novamente)
+            foreach (string linha in resultado)
+            {
+                open.lstPesquisar.Items.Add(linha);
+            }
+
+            //reselecionando o item que estava selecionado anteriormente
+            open.lstPesquisar.SelectedIndex = index;
+
+            //retornando o valor da flag original para a função clearFieldsValues retornar sua função normal
+            open.flagClearFields = false;
+            open.btnFecharConta.Enabled = false;
+
             open.Show();
+
             this.Close();
         }
     }
